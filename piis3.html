@@ -8,15 +8,44 @@
     <style>
         /* Стили для внешнего вида магазина (можно настроить по своему вкусу) */
         .shirt {
-            border: 1px solid #ccc;
+            border: 1px solid #3498db;
+            border-radius: 10px;
             margin: 10px;
             padding: 10px;
-            width: 300px;
-            text-align: center;
+            width: calc(33.33% - 20px);
+            float: left;
+            box-sizing: border-box;
         }
 
         .shirt img {
             max-width: 100px;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #2980b9;
         }
     </style>
 </head>
@@ -27,42 +56,57 @@
 
     <script src="shirts.js"></script>
     <script>
-        // Получаем контейнер, в который будем добавлять майки
         const shirtsContainer = document.getElementById('shirts-container');
 
-        // Перебираем данные о майках из файла shirts.js и создаем соответствующие элементы DOM
         shirts.forEach(shirt => {
-            // Создаем элемент майки
             const shirtElement = document.createElement('div');
             shirtElement.classList.add('shirt');
 
-            // Создаем изображение майки (если изображение не указано, используем дефолтное)
-            const imageUrl = shirt.colors && shirt.colors.white && shirt.colors.white.front ? shirt.colors.white.front : shirt.default.front;
+            const imageUrl = shirt.colors && Object.keys(shirt.colors).length > 0 ? Object.values(shirt.colors)[0].front : shirt.default.front;
             const shirtImage = document.createElement('img');
             shirtImage.src = imageUrl;
             shirtImage.alt = shirt.name;
             shirtElement.appendChild(shirtImage);
 
-            // Добавляем название майки
             const shirtName = document.createElement('h2');
             shirtName.textContent = shirt.name;
             shirtElement.appendChild(shirtName);
 
-            // Добавляем описание майки
-            const shirtDescription = document.createElement('p');
-            shirtDescription.textContent = shirt.description;
-            shirtElement.appendChild(shirtDescription);
+            const colorCount = Object.keys(shirt.colors || {}).length;
+            const description = document.createElement('p');
+            description.classList.add('description');
+            description.textContent = `Доступно цветов: ${colorCount}`;
+            shirtElement.appendChild(description);
 
-            // Добавляем цену майки
-            const shirtPrice = document.createElement('p');
-            shirtPrice.textContent = `Цена: ${shirt.price}`;
-            shirtElement.appendChild(shirtPrice);
+            const buttonsContainer = document.createElement('div');
+            buttonsContainer.classList.add('buttons-container');
 
-            // Добавляем майку в контейнер
+            const quickViewButton = createButton('Quick View');
+            quickViewButton.addEventListener('click', () => {
+                alert(`Быстрый просмотр майки: ${shirt.name}`);
+            });
+            buttonsContainer.appendChild(quickViewButton);
+
+            const seePageButton = createButton('See Page');
+            seePageButton.addEventListener('click', () => {
+                alert(`Перейти на страницу майки: ${shirt.name}`);
+            });
+            buttonsContainer.appendChild(seePageButton);
+
+            shirtElement.appendChild(buttonsContainer);
+
             shirtsContainer.appendChild(shirtElement);
         });
+
+        function createButton(text) {
+            const button = document.createElement('button');
+            button.classList.add('button');
+            button.textContent = text;
+            return button;
+        }
     </script>
 
 </body>
 
 </html>
+
