@@ -25,12 +25,19 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .shirt-details img {
-            max-width: 100%;
+            max-width: 40%;
             border-radius: 10px;
-            margin-bottom: 20px;
+            margin-right: 20px;
+        }
+
+        .shirt-info {
+            text-align: left;
         }
 
         .shirt-details h2 {
@@ -43,7 +50,7 @@
             padding: 10px 20px;
             cursor: pointer;
             transition: background-color 0.3s;
-            margin-right: 10px;
+            margin-top: 20px;
         }
 
         .front-button {
@@ -88,11 +95,12 @@
             const shirtImage = document.createElement('img');
             shirtImage.src = imageUrl;
             shirtImage.alt = `${selectedShirt.name} Front`;
-            shirtDetailsContent.appendChild(shirtImage);
+
+            const shirtInfo = document.createElement('div');
+            shirtInfo.classList.add('shirt-info');
 
             const shirtName = document.createElement('h2');
             shirtName.textContent = selectedShirt.name;
-            shirtDetailsContent.appendChild(shirtName);
 
             const colorButtonsContainer = document.createElement('div');
             colorButtonsContainer.classList.add('color-buttons-container');
@@ -124,7 +132,11 @@
             });
             colorButtonsContainer.appendChild(backButton);
 
-            shirtDetailsContent.appendChild(colorButtonsContainer);
+            shirtInfo.appendChild(shirtName);
+            shirtInfo.appendChild(colorButtonsContainer);
+
+            shirtDetailsContent.appendChild(shirtImage);
+            shirtDetailsContent.appendChild(shirtInfo);
 
             shirtDetailsContainer.appendChild(shirtDetailsContent);
 
