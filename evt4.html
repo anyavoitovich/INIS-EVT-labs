@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анкета</title>
+</head>
+<body>
+    <form action="/submit" method="post">
+        <fieldset>
+            <legend>Личная информация</legend>
+
+            <label for="name">Имя:</label>
+            <input type="text" id="name" name="name" required><br>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="phone">Телефон:</label>
+            <input type="tel" id="phone" name="phone" required><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Пол:</legend>
+
+            <label for="male">Мужской</label>
+            <input type="radio" id="male" name="gender" value="male">
+
+            <label for="female">Женский</label>
+            <input type="radio" id="female" name="gender" value="female">
+        </fieldset>
+
+        <fieldset>
+            <legend>Интересы:</legend>
+
+            <label for="sport">Спорт</label>
+            <input type="checkbox" id="sport" name="interests" value="sport">
+
+            <label for="music">Музыка</label>
+            <input type="checkbox" id="music" name="interests" value="music">
+
+            <label for="travel">Путешествия</label>
+            <input type="checkbox" id="travel" name="interests" value="travel">
+        </fieldset>
+
+        <fieldset>
+            <legend>Загрузить файл</legend>
+
+            <input type="file" id="file" name="file">
+        </fieldset>
+
+        <fieldset>
+            <legend>Пароль</legend>
+
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password" required><br>
+        </fieldset>
+
+        <input type="submit" value="Отправить">
+        <input type="reset" value="Сбросить">
+    </form>
+    <a href="index.html">главная страница</a>
+</body>
+</html>
