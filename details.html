@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детали майки</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@462&display=swap" rel="stylesheet">
+    <style>
+        /* Стили для внешнего вида страницы с деталями майки */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Orbitron', sans-serif;
+            background-color: #ecf0f1;
+        }
+
+        .shirt-details {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .shirt-details img {
+            max-width: 100%;
+            border-radius: 10px 10px 0 0;
+        }
+
+        .shirt-details h2 {
+            color: #144362;
+            margin: 20px 0;
+        }
+
+        .shirt-details p {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            background-color: #144362;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #0f344d;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="shirt-details" id="shirtDetails">
+        <!-- Контент будет сгенерирован JavaScript-ом и добавлен сюда -->
+    </div>
+
+    <script src="shirts.js"></script>
+    <script>
+        const shirtDetailsContainer = document.getElementById('shirtDetails');
+
+        // Получаем индекс выбранной майки из localStorage
+        const selectedShirtIndex = localStorage.getItem('selectedShirtIndex');
+
+        // Получаем данные о выбранной майке из массива shirts
+        const selectedShirt = shirts[selectedShirtIndex];
+
+        // Генерируем контент для страницы с деталями майки
+        const shirtDetailsContent = document.createElement('div');
+
+        const imageUrlFront = selectedShirt.colors && Object.keys(selectedShirt.colors).length > 0 ? Object.values(selectedShirt.colors)[0].front : selectedShirt.default.front;
+        const imageUrlBack = selectedShirt.colors && Object.keys(selectedShirt.colors).length > 0 ? Object.values(selectedShirt.colors)[0].back : selectedShirt.default.back;
+
+        const frontImage = document.createElement('img');
+        frontImage.src = imageUrlFront;
+        frontImage.alt = `${selectedShirt.name} Front`;
+        shirtDetailsContent.appendChild(frontImage);
+
+        const backImage = document.createElement('img');
+        backImage.src = imageUrlBack;
+        backImage.alt = `${selectedShirt.name} Back`;
+        shirtDetailsContent.appendChild(backImage);
+
+        const shirtName = document.createElement('h2');
+        shirtName.textContent = selectedShirt.name;
+        shirtDetailsContent.appendChild(shirtName);
+
+        const description = document.createElement('p');
+        const colorCount = Object.keys(selectedShirt.colors || {}).length;
+        description.textContent = `Available in: ${colorCount} color`;
+        shirtDetailsContent.appendChild(description);
+
+        const price = document.createElement('p');
+        price.textContent = `Price: ${selectedShirt.price}`;
+        shirtDetailsContent.appendChild(price);
+
+        const closeButton = createButton('Close');
+        closeButton.addEventListener('click', () => {
+            window.location.href = 'index.html';
+        });
+        shirtDetailsContent.appendChild(closeButton);
+
+        shirtDetailsContainer.appendChild(shirtDetailsContent);
+
+        function createButton(text) {
+            const button = document.createElement('button');
+            button.classList.add('button');
+            button.textContent = text;
+            return button;
+        }
+    </script>
+
+</body>
+
+</html>
