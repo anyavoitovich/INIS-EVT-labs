@@ -31,7 +31,7 @@
         }
 
         .shirt-details img {
-            max-width: 40%;
+            max-width: 45%; /* Увеличил размер изображения */
             border-radius: 10px;
             margin-right: 20px;
         }
@@ -42,6 +42,7 @@
 
         .shirt-details h2 {
             color: #144362;
+            margin-bottom: 10px;
         }
 
         .button {
@@ -51,6 +52,7 @@
             cursor: pointer;
             transition: background-color 0.3s;
             margin-top: 20px;
+            margin-right: 10px; /* Увеличил отступ между кнопками и текстом */
         }
 
         .front-button {
@@ -62,11 +64,16 @@
         }
 
         .color-button {
-            width: 20px;
-            height: 20px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             cursor: pointer;
             margin-right: 10px;
+        }
+
+        /* Добавил новый цвет */
+        .white-button {
+            background-color: #fff;
         }
     </style>
 </head>
@@ -92,7 +99,8 @@
             const shirtImages = {
                 'red': selectedShirt.colors.red || selectedShirt.default,
                 'blue': selectedShirt.colors.blue || selectedShirt.default,
-                'green': selectedShirt.colors.green || selectedShirt.default
+                'green': selectedShirt.colors.green || selectedShirt.default,
+                'white': selectedShirt.colors.white || selectedShirt.default // Добавил белый цвет
             };
 
             // Генерируем контент для страницы с деталями майки
@@ -113,7 +121,7 @@
             colorButtonsContainer.classList.add('color-buttons-container');
 
             // Создаем кнопки для цветов майки
-            const colors = ['red', 'blue', 'green'];
+            const colors = ['red', 'blue', 'green', 'white']; // Добавил белый цвет
             colors.forEach(color => {
                 const colorButton = document.createElement('div');
                 colorButton.style.backgroundColor = color;
@@ -140,31 +148,34 @@
             });
             colorButtonsContainer.appendChild(backButton);
 
+            // Добавляем элементы на страницу
             shirtInfo.appendChild(shirtName);
             shirtInfo.appendChild(colorButtonsContainer);
-
-            shirtDetailsContent.appendChild(shirtImage);
+            shirtInfo.appendChild(shirtImage);
             shirtDetailsContent.appendChild(shirtInfo);
 
             shirtDetailsContainer.appendChild(shirtDetailsContent);
 
             function createButton(text, className) {
                 const button = document.createElement('button');
-                button.classList.add('button');
-                button.classList.add(className);
+                button.classList.add('button', className);
                 button.textContent = text;
                 return button;
             }
 
             function changeShirtColor(color) {
-                // Изменяем изображение майки на соответствующее цвету
-                const imageUrl = shirtImages[color].front;
+                // Изменяем изображение майки в зависимости от выбранного цвета
+                imageUrl = shirtImages[color].front;
                 shirtImage.src = imageUrl;
             }
 
             function changeShirtSide(side) {
-                // Изменяем изображение майки на перед или зад
-                const imageUrl = side === 'front' ? shirtImages.red.front : shirtImages.red.back;
+                // Изменяем изображение майки в зависимости от выбранной стороны
+                if (side === 'front') {
+                    imageUrl = shirtImages.red.front; // Используем красный цвет спереди
+                } else {
+                    imageUrl = shirtImages.red.back; // Используем красный цвет сзади
+                }
                 shirtImage.src = imageUrl;
             }
         });
