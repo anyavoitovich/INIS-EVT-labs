@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магазин маек</title>
+    <style>
+        /* Стили для внешнего вида магазина (можно настроить по своему вкусу) */
+        .shirt {
+            border: 1px solid #ccc;
+            margin: 10px;
+            padding: 10px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .shirt img {
+            max-width: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="shirts-container"></div>
+
+    <script src="shirts.js"></script>
+    <script>
+        // Получаем контейнер, в который будем добавлять майки
+        const shirtsContainer = document.getElementById('shirts-container');
+
+        // Перебираем данные о майках из файла shirts.js и создаем соответствующие элементы DOM
+        shirts.forEach(shirt => {
+            // Создаем элемент майки
+            const shirtElement = document.createElement('div');
+            shirtElement.classList.add('shirt');
+
+            // Создаем изображение майки (если изображение не указано, используем дефолтное)
+            const imageUrl = shirt.colors && shirt.colors.white && shirt.colors.white.front ? shirt.colors.white.front : shirt.default.front;
+            const shirtImage = document.createElement('img');
+            shirtImage.src = imageUrl;
+            shirtImage.alt = shirt.name;
+            shirtElement.appendChild(shirtImage);
+
+            // Добавляем название майки
+            const shirtName = document.createElement('h2');
+            shirtName.textContent = shirt.name;
+            shirtElement.appendChild(shirtName);
+
+            // Добавляем описание майки
+            const shirtDescription = document.createElement('p');
+            shirtDescription.textContent = shirt.description;
+            shirtElement.appendChild(shirtDescription);
+
+            // Добавляем цену майки
+            const shirtPrice = document.createElement('p');
+            shirtPrice.textContent = `Цена: ${shirt.price}`;
+            shirtElement.appendChild(shirtPrice);
+
+            // Добавляем майку в контейнер
+            shirtsContainer.appendChild(shirtElement);
+        });
+    </script>
+
+</body>
+
+</html>
