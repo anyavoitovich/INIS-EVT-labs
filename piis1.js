@@ -16,7 +16,7 @@ for (let i = 0; i < 2; i++) {
         filmEsteem = prompt('На сколько вы его оцените?');
     } while (!filmEsteem || filmEsteem.length >= 50 || filmEsteem == ' ');
 
-    //personalMovieDB.movies[lastFilm] = filmEsteem;
+    personalMovieDB.movies[lastFilm] = filmEsteem;
     personalMovieDB.movies.push({ title: lastFilm, rating: filmEsteem });
 
 }
