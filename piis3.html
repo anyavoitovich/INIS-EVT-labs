@@ -147,13 +147,11 @@
 
             const seePageButton = createButton('See Page');
             seePageButton.addEventListener('click', () => {
-                localStorage.setItem('selectedShirtIndex', index); // Сохраняем индекс выбранной майки в localStorage
+                localStorage.setItem('selectedShirtIndex', index);
                 window.location.href = 'details.html'; // Перенаправляем на страницу details.html
             });
             buttonsContainer.appendChild(seePageButton);
-
             shirtElement.appendChild(buttonsContainer);
-
             shirtsContainer.appendChild(shirtElement);
         });
 
