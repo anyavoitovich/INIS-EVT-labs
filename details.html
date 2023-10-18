@@ -15,29 +15,31 @@
             padding: 0;
             font-family: 'Orbitron', sans-serif;
             background-color: #ecf0f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
         }
 
         .shirt-details {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
             background-color: #fff;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            padding: 20px;
         }
 
         .shirt-details img {
-            max-width: 45%; /* Увеличил размер изображения */
+            max-width: 100%;
             border-radius: 10px;
-            margin-right: 20px;
+            margin-bottom: 20px;
         }
 
         .shirt-info {
             text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .shirt-details h2 {
@@ -51,8 +53,8 @@
             padding: 10px 20px;
             cursor: pointer;
             transition: background-color 0.3s;
-            margin-top: 20px;
-            margin-right: 10px; /* Увеличил отступ между кнопками и текстом */
+            margin-top: 10px;
+            margin-right: 10px;
         }
 
         .front-button {
@@ -69,11 +71,27 @@
             border-radius: 50%;
             cursor: pointer;
             margin-right: 10px;
+            border: 2px solid #fff;
         }
 
-        /* Добавил новый цвет */
         .white-button {
             background-color: #fff;
+        }
+
+        .yellow-button {
+            background-color: yellow;
+        }
+
+        .pink-button {
+            background-color: pink;
+        }
+
+        .back-button {
+            background-color: #3498db;
+        }
+
+        .buttons-container {
+            display: flex;
         }
     </style>
 </head>
@@ -100,7 +118,9 @@
                 'red': selectedShirt.colors.red || selectedShirt.default,
                 'blue': selectedShirt.colors.blue || selectedShirt.default,
                 'green': selectedShirt.colors.green || selectedShirt.default,
-                'white': selectedShirt.colors.white || selectedShirt.default // Добавил белый цвет
+                'white': selectedShirt.colors.white || selectedShirt.default, // Добавил белый цвет
+                'yellow': selectedShirt.colors.yellow || selectedShirt.default, // Добавил желтый цвет
+                'pink': selectedShirt.colors.pink || selectedShirt.default // Добавил розовый цвет
             };
 
             // Генерируем контент для страницы с деталями майки
@@ -118,10 +138,10 @@
             shirtName.textContent = selectedShirt.name;
 
             const colorButtonsContainer = document.createElement('div');
-            colorButtonsContainer.classList.add('color-buttons-container');
+            colorButtonsContainer.classList.add('buttons-container');
 
             // Создаем кнопки для цветов майки
-            const colors = ['red', 'blue', 'green', 'white']; // Добавил белый цвет
+            const colors = ['red', 'blue', 'green', 'white', 'yellow', 'pink']; // Добавил желтый и розовый цвет
             colors.forEach(color => {
                 const colorButton = document.createElement('div');
                 colorButton.style.backgroundColor = color;
