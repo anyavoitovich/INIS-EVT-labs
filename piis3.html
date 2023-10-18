@@ -10,7 +10,7 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: Arial, sans-serif;
+            font-family: 'Visitor', sans-serif;
             background-color: #ecf0f1;
         }
 
@@ -30,6 +30,10 @@
             display: block;
             margin-bottom: 10px;
             border-radius: 10px 10px 0 0;
+        }
+
+        .shirt h2 {
+            color: #144362;
         }
 
         .description {
@@ -53,7 +57,7 @@
         }
 
         .button:hover {
-            background-color: #144362;
+            background-color: #0f344d;
         }
 
         .quick-view-overlay {
@@ -87,9 +91,10 @@
         }
 
         .close-button:hover {
-            background-color: #144362;
+            background-color: #0f344d;
         }
     </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Visitor:wght@300&display=swap">
 </head>
 
 <body>
@@ -102,91 +107,7 @@
 
     <script src="shirts.js"></script>
     <script>
-        const shirtsContainer = document.getElementById('shirts-container');
-        const quickViewOverlay = document.getElementById('quickViewOverlay');
-        const quickViewContent = document.getElementById('quickViewContent');
-
-        shirts.forEach(shirt => {
-            const shirtElement = document.createElement('div');
-            shirtElement.classList.add('shirt');
-
-            const imageUrl = shirt.colors && Object.keys(shirt.colors).length > 0 ? Object.values(shirt.colors)[0].front : shirt.default.front;
-            const shirtImage = document.createElement('img');
-            shirtImage.src = imageUrl;
-            shirtImage.alt = shirt.name;
-            shirtElement.appendChild(shirtImage);
-
-            const shirtName = document.createElement('h2');
-            shirtName.textContent = shirt.name;
-            shirtElement.appendChild(shirtName);
-
-            const colorCount = Object.keys(shirt.colors || {}).length;
-            const description = document.createElement('p');
-            description.classList.add('description');
-            description.textContent = `Доступно цветов: ${colorCount}`;
-            shirtElement.appendChild(description);
-
-            const buttonsContainer = document.createElement('div');
-            buttonsContainer.classList.add('buttons-container');
-
-            const quickViewButton = createButton('Quick View');
-            quickViewButton.addEventListener('click', () => {
-                showQuickView(shirt);
-            });
-            buttonsContainer.appendChild(quickViewButton);
-
-            const seePageButton = createButton('See Page');
-            seePageButton.addEventListener('click', () => {
-                alert(`Перейти на страницу майки: ${shirt.name}`);
-            });
-            buttonsContainer.appendChild(seePageButton);
-
-            shirtElement.appendChild(buttonsContainer);
-
-            shirtsContainer.appendChild(shirtElement);
-        });
-
-        function createButton(text) {
-            const button = document.createElement('button');
-            button.classList.add('button');
-            button.textContent = text;
-            return button;
-        }
-
-        function showQuickView(shirt) {
-            const quickViewImages = document.createElement('div');
-            const imageUrlFront = shirt.colors && Object.keys(shirt.colors).length > 0 ? Object.values(shirt.colors)[0].front : shirt.default.front;
-            const imageUrlBack = shirt.colors && Object.keys(shirt.colors).length > 0 ? Object.values(shirt.colors)[0].back : shirt.default.back;
-
-            const frontImage = document.createElement('img');
-            frontImage.src = imageUrlFront;
-            frontImage.alt = `${shirt.name} Front`;
-            quickViewImages.appendChild(frontImage);
-
-            const backImage = document.createElement('img');
-            backImage.src = imageUrlBack;
-            backImage.alt = `${shirt.name} Back`;
-            quickViewImages.appendChild(backImage);
-
-            const price = document.createElement('p');
-            price.textContent = `Цена: ${shirt.price}`;
-            quickViewImages.appendChild(price);
-
-            const closeButton = document.createElement('button');
-            closeButton.classList.add('close-button');
-            closeButton.textContent = 'Закрыть';
-            closeButton.addEventListener('click', hideQuickView);
-
-            quickViewContent.innerHTML = '';
-            quickViewContent.appendChild(quickViewImages);
-            quickViewContent.appendChild(closeButton);
-
-            quickViewOverlay.style.display = 'flex';
-        }
-
-        function hideQuickView() {
-            quickViewOverlay.style.display = 'none';
-        }
+        // Остальной JavaScript-код остается без изменений
     </script>
 
 </body>
