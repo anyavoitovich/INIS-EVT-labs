@@ -7,22 +7,28 @@
     <title>Магазин маек</title>
     <style>
         /* Стили для внешнего вида магазина (можно настроить по своему вкусу) */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
         .shirt {
             border: 1px solid #3498db;
-            border-radius: 10px;
+            border-radius: 10px 10px 0 0;
             margin: 10px;
             padding: 10px;
             width: calc(33.33% - 20px);
             float: left;
             box-sizing: border-box;
-            cursor: pointer;
+            background-color: #fff;
         }
 
         .shirt img {
-            max-width: 100px;
+            max-width: 100%;
             display: block;
-            margin: 0 auto;
             margin-bottom: 10px;
+            border-radius: 10px 10px 0 0;
         }
 
         .description {
@@ -49,24 +55,29 @@
             background-color: #2980b9;
         }
 
-        .modal {
+        .quick-view-overlay {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 123, 255, 0.8);
             justify-content: center;
             align-items: center;
+            text-align: center;
         }
 
-        .modal-content {
+        .quick-view-content {
             background-color: #3498db;
-            color: #fff;
             padding: 20px;
             border-radius: 10px;
-            text-align: center;
+            color: #fff;
+        }
+
+        .close-button {
+            cursor: pointer;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -75,21 +86,15 @@
 
     <div id="shirts-container"></div>
 
-    <div class="modal" id="modal">
-        <div class="modal-content">
-            <h2 id="modal-title"></h2>
-            <img id="modal-image" src="" alt="Майка">
-            <p id="modal-price"></p>
-        </div>
+    <div class="quick-view-overlay" id="quickViewOverlay">
+        <div class="quick-view-content" id="quickViewContent"></div>
     </div>
 
     <script src="shirts.js"></script>
     <script>
         const shirtsContainer = document.getElementById('shirts-container');
-        const modal = document.getElementById('modal');
-        const modalTitle = document.getElementById('modal-title');
-        const modalImage = document.getElementById('modal-image');
-        const modalPrice = document.getElementById('modal-price');
+        const quickViewOverlay = document.getElementById('quickViewOverlay');
+        const quickViewContent = document.getElementById('quickViewContent');
 
         shirts.forEach(shirt => {
             const shirtElement = document.createElement('div');
@@ -116,7 +121,7 @@
 
             const quickViewButton = createButton('Quick View');
             quickViewButton.addEventListener('click', () => {
-                showModal(shirt);
+                showQuickView(shirt);
             });
             buttonsContainer.appendChild(quickViewButton);
 
@@ -138,18 +143,40 @@
             return button;
         }
 
-        function showModal(shirt) {
-            modalTitle.textContent = shirt.name;
-            const imageUrl = shirt.colors && Object.keys(shirt.colors).length > 0 ? Object.values(shirt.colors)[0].back : shirt.default.back;
-            modalImage.src = imageUrl;
-            modalImage.alt = shirt.name;
-            modalPrice.textContent = `Цена: ${shirt.price}`;
-            modal.style.display = 'flex';
+        function showQuickView(shirt) {
+            const quickViewImages = document.createElement('div');
+            const imageUrlFront = shirt.colors && Object.keys(shirt.colors).length > 0 ? Object.values(shirt.colors)[0].front : shirt.default.front;
+            const imageUrlBack = shirt.colors && Object.keys(shirt.colors).length > 0 ? Object.values(shirt.colors)[0].back : shirt.default.back;
+
+            const frontImage = document.createElement('img');
+            frontImage.src = imageUrlFront;
+            frontImage.alt = `${shirt.name} Front`;
+            quickViewImages.appendChild(frontImage);
+
+            const backImage = document.createElement('img');
+            backImage.src = imageUrlBack;
+            backImage.alt = `${shirt.name} Back`;
+            quickViewImages.appendChild(backImage);
+
+            const price = document.createElement('p');
+            price.textContent = `Цена: ${shirt.price}`;
+            quickViewImages.appendChild(price);
+
+            const closeButton = document.createElement('div');
+            closeButton.classList.add('close-button');
+            closeButton.textContent = 'Закрыть';
+            closeButton.addEventListener('click', hideQuickView);
+
+            quickViewContent.innerHTML = '';
+            quickViewContent.appendChild(quickViewImages);
+            quickViewContent.appendChild(closeButton);
+
+            quickViewOverlay.style.display = 'flex';
         }
 
-        modal.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
+        function hideQuickView() {
+            quickViewOverlay.style.display = 'none';
+        }
     </script>
 
 </body>
