@@ -11,11 +11,12 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
+            background-color: #ecf0f1;
         }
 
         .shirt {
-            border: 1px solid #3498db;
-            border-radius: 10px 10px 0 0;
+            border: 1px solid #144362;
+            border-radius: 10px;
             margin: 10px;
             padding: 10px;
             width: calc(33.33% - 20px);
@@ -42,7 +43,7 @@
         }
 
         .button {
-            background-color: #3498db;
+            background-color: #144362;
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -52,7 +53,7 @@
         }
 
         .button:hover {
-            background-color: #2980b9;
+            background-color: #144362;
         }
 
         .quick-view-overlay {
@@ -62,22 +63,31 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 123, 255, 0.8);
             justify-content: center;
             align-items: center;
             text-align: center;
         }
 
         .quick-view-content {
-            background-color: #3498db;
+            background-color: #fff;
             padding: 20px;
             border-radius: 10px;
-            color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .close-button {
             cursor: pointer;
             margin-top: 20px;
+            background-color: #144362;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+        }
+
+        .close-button:hover {
+            background-color: #144362;
         }
     </style>
 </head>
@@ -162,7 +172,7 @@
             price.textContent = `Цена: ${shirt.price}`;
             quickViewImages.appendChild(price);
 
-            const closeButton = document.createElement('div');
+            const closeButton = document.createElement('button');
             closeButton.classList.add('close-button');
             closeButton.textContent = 'Закрыть';
             closeButton.addEventListener('click', hideQuickView);
