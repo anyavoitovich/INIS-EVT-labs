@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Описание фильма "Сумерки"</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .description {
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Фильм "Сумерки"</h1>
+        <nav>
+            <ul>
+                <li><a href="#description">Описание</a></li>
+                <li><a href="#director">Режиссер</a></li>
+                <li><a href="#release-year">Год выпуска</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <article id="description">
+            <h2>Описание:</h2>
+            <p class="description">"Сумерки" - это романтическая фэнтези-драма, основанная на одноименной книге Стефани Майер. Фильм рассказывает историю любви между обычной школьницей Беллой Свон и вампиром Эдвардом Калленом. Их запретная любовь сталкивается с различиями в мирах людей и вампиров, создавая напряженную атмосферу и интригующий сюжет.</p>
+        </article>
+
+        <aside>
+            <section id="director">
+                <h2>Режиссер:</h2>
+                <p itemprop="director">Кэтрин Хардвик</p>
+            </section>
+
+            <section id="release-year">
+                <h2>Год выпуска:</h2>
+                <time datetime="2008">2008</time>
+            </section>
+        </aside>
+
+        <blockquote>
+            <p>"Сумерки" - это фильм, который завоевал сердца зрителей своей захватывающей историей и красивой режиссурой.</p>
+            <footer>Критик, <cite>КиноМаг</cite></footer>
+        </blockquote>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Фильм "Сумерки". Все права защищены.</p>
+        <a href="index.html">главная страница</a>
+    </footer>
+</body>
+
+
+</html>
