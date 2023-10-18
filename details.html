@@ -104,7 +104,7 @@
 
     <script src="shirts.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             const shirtDetailsContainer = document.getElementById('shirtDetails');
 
             // Получаем индекс выбранной майки из localStorage
@@ -118,21 +118,19 @@
                 'red': selectedShirt.colors.red || selectedShirt.default,
                 'blue': selectedShirt.colors.blue || selectedShirt.default,
                 'green': selectedShirt.colors.green || selectedShirt.default,
-                'white': selectedShirt.colors.white || selectedShirt.default, // Добавил белый цвет
-                'yellow': selectedShirt.colors.yellow || selectedShirt.default, // Добавил желтый цвет
-                'pink': selectedShirt.colors.pink || selectedShirt.default // Добавил розовый цвет
+                'white': selectedShirt.colors.white || selectedShirt.default,
+                'yellow': selectedShirt.colors.yellow || selectedShirt.default,
+                'pink': selectedShirt.colors.pink || selectedShirt.default
             };
 
             // Генерируем контент для страницы с деталями майки
             const shirtDetailsContent = document.createElement('div');
+            shirtDetailsContent.classList.add('shirt-info');
 
             const imageUrl = shirtImages.red.front; // По умолчанию показываем красный цвет спереди
             const shirtImage = document.createElement('img');
             shirtImage.src = imageUrl;
             shirtImage.alt = `${selectedShirt.name} Front`;
-
-            const shirtInfo = document.createElement('div');
-            shirtInfo.classList.add('shirt-info');
 
             const shirtName = document.createElement('h2');
             shirtName.textContent = selectedShirt.name;
@@ -141,7 +139,7 @@
             colorButtonsContainer.classList.add('buttons-container');
 
             // Создаем кнопки для цветов майки
-            const colors = ['red', 'blue', 'green', 'white', 'yellow', 'pink']; // Добавил желтый и розовый цвет
+            const colors = ['red', 'blue', 'green', 'white', 'yellow', 'pink'];
             colors.forEach(color => {
                 const colorButton = document.createElement('div');
                 colorButton.style.backgroundColor = color;
@@ -169,11 +167,10 @@
             colorButtonsContainer.appendChild(backButton);
 
             // Добавляем элементы на страницу
-            shirtInfo.appendChild(shirtName);
-            shirtInfo.appendChild(colorButtonsContainer);
-            shirtInfo.appendChild(shirtImage);
-            shirtDetailsContent.appendChild(shirtInfo);
-
+            shirtDetailsContent.appendChild(shirtName);
+            shirtDetailsContent.appendChild(colorButtonsContainer);
+            shirtDetailsContent.appendChild(shirtImage);
+            shirtDetailsContent.appendChild(backButton);
             shirtDetailsContainer.appendChild(shirtDetailsContent);
 
             function createButton(text, className) {
