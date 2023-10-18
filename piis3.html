@@ -145,11 +145,14 @@
             });
             buttonsContainer.appendChild(quickViewButton);
 
-            const seePageButton = createButton('See Page');
-            seePageButton.addEventListener('click', () => {
-                alert(`Перейти на страницу майки: ${shirt.name}`);
+            const seePageButtons = document.querySelectorAll('.see-page-button');
+
+            seePageButtons.forEach((button, index) => {
+            button.addEventListener('click', () => {
+            localStorage.setItem('selectedShirtIndex', index);
+            window.location.href = 'details.html';
             });
-            buttonsContainer.appendChild(seePageButton);
+});
 
             shirtElement.appendChild(buttonsContainer);
 
