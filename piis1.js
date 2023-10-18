@@ -1,13 +1,24 @@
-let numberOfFilms = prompt ('Сколько ильмов вы уже посмотрели?')
+let numberOfFilms = prompt('Сколько фильмов вы уже посмотрели?');
+
 let personalMovieDB = {
     count: numberOfFilms,
-    movie: []
+    movies: []
 }
-let lastFilm1 = prompt ( 'Один из последних просмотренных фильмов? На сколько оцените его?')
-let answer1 = lastFilm1
-let lastFilm2 = prompt ( ' На сколько оцените его?')
-let answer2 = lastFilm2
-let lastFilm3 = prompt ( 'Один из последних просмотренных фильмов? ')
-let answer3 = lastFilm3
-let lastFilm4 = prompt ( ' На сколько оцените его?')
-let answer4 = lastFilm4
+
+for (let i = 0; i < 2; i++) {
+    let lastFilm;
+    do {
+        lastFilm = prompt('Один из последних просмотренных фильмов?');
+    } while (!lastFilm || lastFilm.length >= 50 || lastFilm == ' ');
+
+    let filmEsteem;
+    do {
+        filmEsteem = prompt('На сколько вы его оцените?');
+    } while (!filmEsteem || filmEsteem.length >= 50 || filmEsteem == ' ');
+
+    //personalMovieDB.movies[lastFilm] = filmEsteem;
+    personalMovieDB.movies.push({ title: lastFilm, rating: filmEsteem });
+
+}
+
+alert(JSON.stringify(personalMovieDB));
