@@ -115,36 +115,36 @@
         const shirtsContainer = document.getElementById('shirts-container');
         const quickViewOverlay = document.getElementById('quickViewOverlay');
         const quickViewContent = document.getElementById('quickViewContent');
-
-        shirts.forEach(shirt => {
+    
+        shirts.forEach((shirt, index) => {
             const shirtElement = document.createElement('div');
             shirtElement.classList.add('shirt');
-
+    
             const imageUrl = shirt.colors && Object.keys(shirt.colors).length > 0 ? Object.values(shirt.colors)[0].front : shirt.default.front;
             const shirtImage = document.createElement('img');
             shirtImage.src = imageUrl;
             shirtImage.alt = shirt.name;
             shirtElement.appendChild(shirtImage);
-
+    
             const shirtName = document.createElement('h2');
             shirtName.textContent = shirt.name;
             shirtElement.appendChild(shirtName);
-
+    
             const colorCount = Object.keys(shirt.colors || {}).length;
             const description = document.createElement('p');
             description.classList.add('description');
-            description.textContent = `avalible in: ${colorCount} color`;
+            description.textContent = `Available in: ${colorCount} color`;
             shirtElement.appendChild(description);
-
+    
             const buttonsContainer = document.createElement('div');
             buttonsContainer.classList.add('buttons-container');
-
+    
             const quickViewButton = createButton('Quick View');
             quickViewButton.addEventListener('click', () => {
                 showQuickView(shirt);
             });
             buttonsContainer.appendChild(quickViewButton);
-
+    
             const seePageButton = createButton('See Page');
             seePageButton.addEventListener('click', () => {
                 localStorage.setItem('selectedShirtIndex', index);
