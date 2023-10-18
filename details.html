@@ -42,17 +42,28 @@
         }
 
         .button {
-            background-color: #144362;
-            color: #fff;
             border: none;
             border-radius: 5px;
             padding: 10px 20px;
             cursor: pointer;
             transition: background-color 0.3s;
+            margin-right: 10px;
         }
 
-        .button:hover {
-            background-color: #0f344d;
+        .front-button {
+            background-color: #FF5733;
+        }
+
+        .back-button {
+            background-color: #3498db;
+        }
+
+        .color-button {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            cursor: pointer;
+            margin-right: 10px;
         }
     </style>
 </head>
@@ -65,60 +76,87 @@
 
     <script src="shirts.js"></script>
     <script>
-       document.addEventListener("DOMContentLoaded", function() {
-    const shirtDetailsContainer = document.getElementById('shirtDetails');
+        document.addEventListener("DOMContentLoaded", function() {
+            const shirtDetailsContainer = document.getElementById('shirtDetails');
 
-    // Получаем индекс выбранной майки из localStorage
-    const selectedShirtIndex = localStorage.getItem('selectedShirtIndex');
+            // Получаем индекс выбранной майки из localStorage
+            const selectedShirtIndex = localStorage.getItem('selectedShirtIndex');
 
-    // Получаем данные о выбранной майке из массива shirts
-    const selectedShirt = shirts[selectedShirtIndex];
+            // Получаем данные о выбранной майке из массива shirts
+            const selectedShirt = shirts[selectedShirtIndex];
 
-    // Генерируем контент для страницы с деталями майки
-    const shirtDetailsContent = document.createElement('div');
+            // Генерируем контент для страницы с деталями майки
+            const shirtDetailsContent = document.createElement('div');
 
-    const imageUrlFront = selectedShirt.colors && Object.keys(selectedShirt.colors).length > 0 ? Object.values(selectedShirt.colors)[0].front : selectedShirt.default.front;
-    const imageUrlBack = selectedShirt.colors && Object.keys(selectedShirt.colors).length > 0 ? Object.values(selectedShirt.colors)[0].back : selectedShirt.default.back;
+            const imageUrlFront = selectedShirt.colors && Object.keys(selectedShirt.colors).length > 0 ? Object.values(selectedShirt.colors)[0].front : selectedShirt.default.front;
+            const imageUrlBack = selectedShirt.colors && Object.keys(selectedShirt.colors).length > 0 ? Object.values(selectedShirt.colors)[0].back : selectedShirt.default.back;
 
-    const frontImage = document.createElement('img');
-    frontImage.src = imageUrlFront;
-    frontImage.alt = `${selectedShirt.name} Front`;
-    shirtDetailsContent.appendChild(frontImage);
+            const frontImage = document.createElement('img');
+            frontImage.src = imageUrlFront;
+            frontImage.alt = `${selectedShirt.name} Front`;
+            shirtDetailsContent.appendChild(frontImage);
 
-    const backImage = document.createElement('img');
-    backImage.src = imageUrlBack;
-    backImage.alt = `${selectedShirt.name} Back`;
-    shirtDetailsContent.appendChild(backImage);
+            const backImage = document.createElement('img');
+            backImage.src = imageUrlBack;
+            backImage.alt = `${selectedShirt.name} Back`;
+            shirtDetailsContent.appendChild(backImage);
 
-    const shirtName = document.createElement('h2');
-    shirtName.textContent = selectedShirt.name;
-    shirtDetailsContent.appendChild(shirtName);
+            const shirtName = document.createElement('h2');
+            shirtName.textContent = selectedShirt.name;
+            shirtDetailsContent.appendChild(shirtName);
 
-    const description = document.createElement('p');
-    const colorCount = Object.keys(selectedShirt.colors || {}).length;
-    description.textContent = `Available in: ${colorCount} color`;
-    shirtDetailsContent.appendChild(description);
+            const colorButtonsContainer = document.createElement('div');
+            colorButtonsContainer.classList.add('color-buttons-container');
 
-    const price = document.createElement('p');
-    price.textContent = `Price: ${selectedShirt.price}`;
-    shirtDetailsContent.appendChild(price);
+            // Создаем кнопки для цветов майки
+            Object.keys(selectedShirt.colors).forEach(color => {
+                const colorButton = document.createElement('div');
+                colorButton.style.backgroundColor = color;
+                colorButton.classList.add('color-button');
+                colorButton.addEventListener('click', () => {
+                    // Изменяем цвет майки при клике на кнопку цвета
+                    changeShirtColor(color);
+                });
+                colorButtonsContainer.appendChild(colorButton);
+            });
 
-    const closeButton = createButton('Close');
-    closeButton.addEventListener('click', () => {
-        window.location.href = 'piis3.html';
-    });
-    shirtDetailsContent.appendChild(closeButton);
+            // Создаем кнопки для переключения на перед и зад
+            const frontButton = createButton('Front', 'front-button');
+            frontButton.addEventListener('click', () => {
+                // Переключаем майку на перед
+                changeShirtSide('front');
+            });
+            colorButtonsContainer.appendChild(frontButton);
 
-    shirtDetailsContainer.appendChild(shirtDetailsContent);
+            const backButton = createButton('Back', 'back-button');
+            backButton.addEventListener('click', () => {
+                // Переключаем майку на зад
+                changeShirtSide('back');
+            });
+            colorButtonsContainer.appendChild(backButton);
 
-    function createButton(text) {
-        const button = document.createElement('button');
-        button.classList.add('button');
-        button.textContent = text;
-        return button;
-    }
-});
+            shirtDetailsContent.appendChild(colorButtonsContainer);
 
+            shirtDetailsContainer.appendChild(shirtDetailsContent);
+
+            function createButton(text, className) {
+                const button = document.createElement('button');
+                button.classList.add('button');
+                button.classList.add(className);
+                button.textContent = text;
+                return button;
+            }
+
+            function changeShirtColor(color) {
+                // Ваш код для изменения цвета майки
+                console.log(`Майка теперь ${color} цвета.`);
+            }
+
+            function changeShirtSide(side) {
+                // Ваш код для переключения майки на перед или зад
+                console.log(`Майка теперь на ${side}.`);
+            }
+        });
     </script>
 
 </body>
