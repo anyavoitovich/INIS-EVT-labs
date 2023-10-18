@@ -12,7 +12,7 @@
         /* Стили для внешнего вида магазина (можно настроить по своему вкусу) */
         body {
             margin: 30;
-            padding: 70;
+            padding: 0;
             font-family: 'Orbitron', sans-serif;
             background-color: #ecf0f1;
         }
@@ -145,6 +145,7 @@
             });
             buttonsContainer.appendChild(quickViewButton);
 
+            const seePageButton = createButton('See Page');
             const seePageButtons = document.querySelectorAll('.see-page-button');
 
             seePageButtons.forEach((button, index) => {
@@ -153,6 +154,7 @@
             window.location.href = 'details.html';
             });
 });
+            buttonsContainer.appendChild(seePageButton);
 
             shirtElement.appendChild(buttonsContainer);
 
