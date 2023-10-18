@@ -65,57 +65,60 @@
 
     <script src="shirts.js"></script>
     <script>
-        const shirtDetailsContainer = document.getElementById('shirtDetails');
+       document.addEventListener("DOMContentLoaded", function() {
+    const shirtDetailsContainer = document.getElementById('shirtDetails');
 
-        // Получаем индекс выбранной майки из localStorage
-        const selectedShirtIndex = localStorage.getItem('selectedShirtIndex');
+    // Получаем индекс выбранной майки из localStorage
+    const selectedShirtIndex = localStorage.getItem('selectedShirtIndex');
 
-        // Получаем данные о выбранной майке из массива shirts
-        const selectedShirt = shirts[selectedShirtIndex];
+    // Получаем данные о выбранной майке из массива shirts
+    const selectedShirt = shirts[selectedShirtIndex];
 
-        // Генерируем контент для страницы с деталями майки
-        const shirtDetailsContent = document.createElement('div');
+    // Генерируем контент для страницы с деталями майки
+    const shirtDetailsContent = document.createElement('div');
 
-        const imageUrlFront = selectedShirt.colors && Object.keys(selectedShirt.colors).length > 0 ? Object.values(selectedShirt.colors)[0].front : selectedShirt.default.front;
-        const imageUrlBack = selectedShirt.colors && Object.keys(selectedShirt.colors).length > 0 ? Object.values(selectedShirt.colors)[0].back : selectedShirt.default.back;
+    const imageUrlFront = selectedShirt.colors && Object.keys(selectedShirt.colors).length > 0 ? Object.values(selectedShirt.colors)[0].front : selectedShirt.default.front;
+    const imageUrlBack = selectedShirt.colors && Object.keys(selectedShirt.colors).length > 0 ? Object.values(selectedShirt.colors)[0].back : selectedShirt.default.back;
 
-        const frontImage = document.createElement('img');
-        frontImage.src = imageUrlFront;
-        frontImage.alt = `${selectedShirt.name} Front`;
-        shirtDetailsContent.appendChild(frontImage);
+    const frontImage = document.createElement('img');
+    frontImage.src = imageUrlFront;
+    frontImage.alt = `${selectedShirt.name} Front`;
+    shirtDetailsContent.appendChild(frontImage);
 
-        const backImage = document.createElement('img');
-        backImage.src = imageUrlBack;
-        backImage.alt = `${selectedShirt.name} Back`;
-        shirtDetailsContent.appendChild(backImage);
+    const backImage = document.createElement('img');
+    backImage.src = imageUrlBack;
+    backImage.alt = `${selectedShirt.name} Back`;
+    shirtDetailsContent.appendChild(backImage);
 
-        const shirtName = document.createElement('h2');
-        shirtName.textContent = selectedShirt.name;
-        shirtDetailsContent.appendChild(shirtName);
+    const shirtName = document.createElement('h2');
+    shirtName.textContent = selectedShirt.name;
+    shirtDetailsContent.appendChild(shirtName);
 
-        const description = document.createElement('p');
-        const colorCount = Object.keys(selectedShirt.colors || {}).length;
-        description.textContent = `Available in: ${colorCount} color`;
-        shirtDetailsContent.appendChild(description);
+    const description = document.createElement('p');
+    const colorCount = Object.keys(selectedShirt.colors || {}).length;
+    description.textContent = `Available in: ${colorCount} color`;
+    shirtDetailsContent.appendChild(description);
 
-        const price = document.createElement('p');
-        price.textContent = `Price: ${selectedShirt.price}`;
-        shirtDetailsContent.appendChild(price);
+    const price = document.createElement('p');
+    price.textContent = `Price: ${selectedShirt.price}`;
+    shirtDetailsContent.appendChild(price);
 
-        const closeButton = createButton('Close');
-        closeButton.addEventListener('click', () => {
-            window.location.href = 'index.html';
-        });
-        shirtDetailsContent.appendChild(closeButton);
+    const closeButton = createButton('Close');
+    closeButton.addEventListener('click', () => {
+        window.location.href = 'index.html';
+    });
+    shirtDetailsContent.appendChild(closeButton);
 
-        shirtDetailsContainer.appendChild(shirtDetailsContent);
+    shirtDetailsContainer.appendChild(shirtDetailsContent);
 
-        function createButton(text) {
-            const button = document.createElement('button');
-            button.classList.add('button');
-            button.textContent = text;
-            return button;
-        }
+    function createButton(text) {
+        const button = document.createElement('button');
+        button.classList.add('button');
+        button.textContent = text;
+        return button;
+    }
+});
+
     </script>
 
 </body>
