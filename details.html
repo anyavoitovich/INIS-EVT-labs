@@ -19,6 +19,7 @@
             align-items: center;
             justify-content: center;
             height: 100vh;
+            flex-direction: column;
         }
 
         .shirt-details {
@@ -27,19 +28,19 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             text-align: center;
             padding: 20px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
         }
 
         .shirt-details img {
-            max-width: 100%;
+            max-width: 300px;
             border-radius: 10px;
-            margin-bottom: 20px;
         }
 
         .shirt-info {
             text-align: left;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            margin-left: 20px;
         }
 
         .shirt-details h2 {
@@ -92,6 +93,7 @@
 
         .buttons-container {
             display: flex;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -141,14 +143,16 @@
             // Создаем кнопки для цветов майки
             const colors = ['red', 'blue', 'green', 'white', 'yellow', 'pink'];
             colors.forEach(color => {
-                const colorButton = document.createElement('div');
-                colorButton.style.backgroundColor = color;
-                colorButton.classList.add('color-button');
-                colorButton.addEventListener('click', () => {
-                    // Изменяем цвет майки при клике на кнопку цвета
-                    changeShirtColor(color);
-                });
-                colorButtonsContainer.appendChild(colorButton);
+                if (shirtImages[color]) {
+                    const colorButton = document.createElement('div');
+                    colorButton.style.backgroundColor = color;
+                    colorButton.classList.add('color-button');
+                    colorButton.addEventListener('click', () => {
+                        // Изменяем цвет майки при клике на кнопку цвета
+                        changeShirtColor(color);
+                    });
+                    colorButtonsContainer.appendChild(colorButton);
+                }
             });
 
             // Создаем кнопки для переключения на перед и зад
@@ -166,11 +170,17 @@
             });
             colorButtonsContainer.appendChild(backButton);
 
+            // Создаем кнопку для возвращения к каталогу
+            const catalogButton = createButton('К каталогу');
+            catalogButton.addEventListener('click', () => {
+                window.location.href = 'index.html';
+            });
+            colorButtonsContainer.appendChild(catalogButton);
+
             // Добавляем элементы на страницу
             shirtDetailsContent.appendChild(shirtName);
-            shirtDetailsContent.appendChild(colorButtonsContainer);
             shirtDetailsContent.appendChild(shirtImage);
-            shirtDetailsContent.appendChild(backButton);
+            shirtDetailsContent.appendChild(colorButtonsContainer);
             shirtDetailsContainer.appendChild(shirtDetailsContent);
 
             function createButton(text, className) {
@@ -189,9 +199,9 @@
             function changeShirtSide(side) {
                 // Изменяем изображение майки в зависимости от выбранной стороны
                 if (side === 'front') {
-                    imageUrl = shirtImages.red.front; // Используем красный цвет спереди
+                    imageUrl = shirtImages.red.front; // Показываем красный цвет спереди
                 } else {
-                    imageUrl = shirtImages.red.back; // Используем красный цвет сзади
+                    imageUrl = shirtImages.red.back; // Показываем красный цвет сзади
                 }
                 shirtImage.src = imageUrl;
             }
