@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Movie Database</title>
+</head>
+
+<body>
+
+    <script>
+        // 1) Создаем переменную numberOfFilms и получаем ответ от пользователя
+        let numberOfFilms = +prompt('Сколько фильмов вы уже посмотрели?', '');
+
+        // 2) Создаем объект personalMovieDB
+        const personalMovieDB = {
+            count: numberOfFilms, // свойство count
+            movies: {}, // свойство movies
+            privat: false // свойство privat
+        };
+
+        // 3) Задаем пользователю вопросы и записываем ответы в объект movies
+        for (let i = 0; i < 2; i++) {
+            const movieTitle = prompt('Один из последних просмотренных фильмов?', '');
+            const movieRating = prompt('На сколько оцените его?', '');
+
+            // 4) Проверка на пустую строку, отмену или длину названия фильма
+            if (movieTitle !== '' && movieTitle !== null && movieTitle.length <= 50 &&
+                movieRating !== '' && movieRating !== null) {
+                personalMovieDB.movies[movieTitle] = movieRating;
+            } else {
+                alert('Ошибка! Пожалуйста, введите корректные данные.');
+                i--; // повторяем вопрос, если условия не выполнены
+            }
+        }
+
+        // 6) Выводим объект personalMovieDB в консоль
+        console.log(personalMovieDB);
+
+        // 7) Создаем функцию для вывода объекта movies в виде таблицы на страницу
+        function displayMoviesTable() {
+            const table = document.createElement('table');
+            const tbody = document.createElement('tbody');
+
+            for (const movie in personalMovieDB.movies) {
+                const row = document.createElement('tr');
+                const titleCell = document.createElement('td');
+                const ratingCell = document.createElement('td');
+
+                titleCell.textContent = movie;
+                ratingCell.textContent = personalMovieDB.movies[movie];
+
+                row.appendChild(titleCell);
+                row.appendChild(ratingCell);
+                tbody.appendChild(row);
+            }
+
+            table.appendChild(tbody);
+            document.body.appendChild(table);
+        }
+
+        // 8) Проверяем свойство privat и вызываем функцию вывода таблицы, если privat === false
+        if (!personalMovieDB.privat) {
+            displayMoviesTable();
+        }
+    </script>
+
+</body>
+
+</html>
