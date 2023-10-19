@@ -56,11 +56,23 @@
         
 
         .front-button {
-            background-color: #FF5733;
+            background-color: #144362;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         .back-button {
-            background-color: #3498db;
+            background-color: #144362;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         .color-button {
@@ -69,6 +81,7 @@
             border-radius: 50%;
             cursor: pointer;
             margin-right: 10px;
+            display:inline-block;
         }
     </style>
 </head>
@@ -103,7 +116,7 @@
             // Генерируем контент для страницы с деталями майки
             const shirtDetailsContent = document.createElement('div');
 
-            const imageUrl = shirtImages.white.front; // По умолчанию показываем красный цвет спереди
+            const imageUrl = shirtImages.white.front; // По умолчанию показываем белый цвет спереди
             const shirtImage = document.createElement('img');
             shirtImage.src = imageUrl;
             shirtImage.alt = `${selectedShirt.name} Front`;
