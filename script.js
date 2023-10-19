@@ -29,11 +29,12 @@ function drawHeart(event) {
 
     const width = event.clientX - startX;
     const height = event.clientY - startY;
+
     const heartPath = `
-        M ${startX} ${startY + height / 2}
-        Q ${startX} ${startY} ${startX + width / 2} ${startY}
-        Q ${startX + width} ${startY} ${startX + width} ${startY + height / 2}
-        L ${startX + width / 2} ${startY + height}
+        M ${startX} ${startY + height / 4}
+        A ${width / 4} ${height / 4} 0 0 1 ${startX + width / 2} ${startY}
+        A ${width / 4} ${height / 4} 0 0 1 ${startX + width} ${startY + height / 4}
+        Q ${startX + width / 2} ${startY + height} ${startX} ${startY + height / 4}
         Z
     `;
 
@@ -55,20 +56,31 @@ function drawTriangle(event) {
     svg.innerHTML = `<path d="${trianglePath}" stroke="black" fill="transparent"/>`;
 }
 
+
+
 function drawStar(event) {
     if (!isDrawing) return;
 
     const size = Math.min(event.clientX - startX, event.clientY - startY);
-    const starPath = `
-        M ${startX} ${startY - size / 2}
-        L ${startX + size / 5} ${startY + size / 5}
-        L ${startX} ${startY + size / 2}
-        L ${startX - size / 5} ${startY + size / 5}
-        Z
-    `;
+    const angle = Math.PI / 5;
+    const starPath = `M ${startX} ${startY - size / 2}`;
+
+    for (let i = 0; i < 5; i++) {
+        starPath += `
+            L ${startX + Math.cos(angle + 2 * i * Math.PI / 5) * size / 2} 
+              ${startY + Math.sin(angle + 2 * i * Math.PI / 5) * size / 2}
+        `;
+        starPath += `
+            L ${startX + Math.cos(angle + (2 * i + 1) * Math.PI / 5) * size / 4} 
+              ${startY + Math.sin(angle + (2 * i + 1) * Math.PI / 5) * size / 4}
+        `;
+    }
+
+    starPath += 'Z';
 
     svg.innerHTML = `<path d="${starPath}" stroke="black" fill="transparent"/>`;
 }
+
 
 function stopDrawing() {
     isDrawing = false;
