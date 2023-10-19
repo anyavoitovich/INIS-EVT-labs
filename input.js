@@ -72,3 +72,60 @@ document.addEventListener('keydown', function(event) {
     draggedElement.style.backgroundColor = 'red';
   }
 });
+
+const minSize = 50; // Минимальный размер объекта
+
+// Функция для изменения размера объекта
+function resizeElement(event) {
+  const rect = draggedElement.getBoundingClientRect();
+  const width = event.clientX - rect.left;
+  const height = event.clientY - rect.top;
+
+  if (width >= minSize && height >= minSize) {
+    draggedElement.style.width = `${width}px`;
+    draggedElement.style.height = `${height}px`;
+  }
+}
+
+// Обработчик события touchstart
+function onTouchStart(event) {
+  event.preventDefault();
+  isDragging = true;
+  draggedElement = event.target;
+  offsetX = event.touches[0].clientX - draggedElement.getBoundingClientRect().left;
+  offsetY = event.touches[0].clientY - draggedElement.getBoundingClientRect().top;
+  originalX = draggedElement.style.left;
+  originalY = draggedElement.style.top;
+
+  // Добавляем обработчик для изменения размера объекта
+  draggedElement.addEventListener('touchmove', resizeElement);
+
+  // Добавляем обработчик для открепления элемента от курсора при опускании второго пальца
+  document.addEventListener('touchend', onTouchEnd);
+}
+
+// Обработчик события touchend
+function onTouchEnd(event) {
+  event.preventDefault();
+  isDragging = false;
+  draggedElement.style.backgroundColor = 'red';
+
+  // Убираем обработчики
+  draggedElement.removeEventListener('touchmove', resizeElement);
+  document.removeEventListener('touchend', onTouchEnd);
+
+  // Возвращаем элемент на исходное место, если опущен второй палец
+  if (event.touches.length === 0) {
+    draggedElement.style.left = originalX;
+    draggedElement.style.top = originalY;
+  }
+}
+
+// Обработчик события touchstart для каждого элемента с классом "target"
+targets.forEach(target => {
+  target.addEventListener('mousedown', startDragging);
+  target.addEventListener('mousemove', dragElement);
+  target.addEventListener('mouseup', stopDragging);
+  target.addEventListener('dblclick', handleDoubleClick);
+  target.addEventListener('touchstart', onTouchStart);
+});
