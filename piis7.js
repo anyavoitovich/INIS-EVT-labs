@@ -56,12 +56,8 @@ document.addEventListener('mousemove', (event) => {
         drawCircle(event);
     } else if (shape === 'rectangle') {
         drawRectangle(event);
-    } else if (shape === 'heart') {
-        drawHeart(event);
     } else if (shape === 'triangle') {
         drawTriangle(event);
-    } else if (shape === 'star') {
-        drawStar(event);
     }
 });
 document.addEventListener('mouseup', stopDrawing);
