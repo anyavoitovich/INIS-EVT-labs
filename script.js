@@ -9,19 +9,21 @@ function startDrawing(event) {
     }
 }
 
-function draw(event) {
+function drawCircle(event) {
+    if (!isDrawing) return;
+
+    const radius = Math.sqrt((event.clientX - startX) ** 2 + (event.clientY - startY) ** 2);
+    svg.innerHTML = `<circle cx="${startX}" cy="${startY}" r="${radius}" stroke="black" fill="transparent"/>`;
+}
+
+function drawRectangle(event) {
     if (!isDrawing) return;
 
     const width = event.clientX - startX;
     const height = event.clientY - startY;
-
-    if (shape === 'circle') {
-        const radius = Math.sqrt(width ** 2 + height ** 2);
-        svg.innerHTML = `<circle cx="${startX}" cy="${startY}" r="${radius}" stroke="black" fill="transparent"/>`;
-    } else if (shape === 'rectangle') {
-        svg.innerHTML = `<rect x="${startX}" y="${startY}" width="${width}" height="${height}" stroke="black" fill="transparent"/>`;
-    }
+    svg.innerHTML = `<rect x="${startX}" y="${startY}" width="${width}" height="${height}" stroke="black" fill="transparent"/>`;
 }
+
 function drawHeart(event) {
     if (!isDrawing) return;
 
@@ -77,5 +79,17 @@ let startX, startY;
 let shape;
 
 document.addEventListener('mousedown', startDrawing);
-document.addEventListener('mousemove', draw);
+document.addEventListener('mousemove', (event) => {
+    if (shape === 'circle') {
+        drawCircle(event);
+    } else if (shape === 'rectangle') {
+        drawRectangle(event);
+    } else if (shape === 'heart') {
+        drawHeart(event);
+    } else if (shape === 'triangle') {
+        drawTriangle(event);
+    } else if (shape === 'star') {
+        drawStar(event);
+    }
+});
 document.addEventListener('mouseup', stopDrawing);
