@@ -15,7 +15,6 @@
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Orbitron', sans-serif;
             background-color: #ecf0f1;
         }
 
@@ -40,6 +39,13 @@
         .shirt-info {
             text-align: align="middle";
             font-family: 'Space Mono', monospace;
+        }
+
+        .shirt-price {
+            color: #000000;
+            font-size: 20px;
+            font-family: 'Orbitron', sans-serif;
+
         }
 
         .shirt-details h2 {
@@ -135,8 +141,8 @@
             const shirtInfo = document.createElement('div');
             shirtInfo.classList.add('shirt-info');
            
-            const shirtPrice = document.createElement('p');
-            shirtPrice.textContent = selectedShirt.price;
+            const shirtPrice = document.createElement('div');
+            shirtPrice.classList.add('shirt-price');
             shirtPrice.alt = `Цена: ${selectedShirt.price}`;
 
             
