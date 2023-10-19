@@ -15,6 +15,7 @@
         body {
             margin: 0;
             padding: 0;
+            font-family: 'Orbitron', sans-serif;
             background-color: #ecf0f1;
         }
 
@@ -27,7 +28,6 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             justify-content: center;
             display: flex;
-            font-family: 'Space Mono', monospace;
         }
 
         .shirt-details img {
@@ -35,6 +35,7 @@
             border-radius: 10px;
             margin-right: 20px;
         }
+
         .shirt-info {
             text-align: align="middle";
             font-family: 'Space Mono', monospace;
@@ -88,7 +89,6 @@
             cursor: pointer;
             margin-right: 10px;
             display:inline-block;
-            align-items: center;
         }
     </style>
 </head>
@@ -135,11 +135,11 @@
             shirtInfo.classList.add('shirt-info');
            
             const shirtPrice = document.createElement('p');
-            shirtPrice.classList = selectedShirt.price;
+            shirtPrice.textContent = selectedShirt.price;
             shirtPrice.alt = `Цена: ${selectedShirt.price}`;
 
             
-            const shirtDescription = document.createElement('p1');
+            const shirtDescription = document.createElement('p');
             shirtDescription.textContent = selectedShirt.description;
             shirtDescription.alt = `${selectedShirt.description}`
 
