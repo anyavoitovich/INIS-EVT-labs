@@ -80,131 +80,100 @@
 
     <script src="shirts.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-    const shirtDetailsContainer = document.getElementById('shirtDetails');
+        document.addEventListener("DOMContentLoaded", function() {
+            const shirtDetailsContainer = document.getElementById('shirtDetails');
 
-    // Получаем индекс выбранной майки из localStorage
-    const selectedShirtIndex = localStorage.getItem('selectedShirtIndex');
+            // Получаем индекс выбранной майки из localStorage
+            const selectedShirtIndex = localStorage.getItem('selectedShirtIndex');
 
-    // Получаем данные о выбранной майке из массива shirts
-    const selectedShirt = shirts[selectedShirtIndex];
+            // Получаем данные о выбранной майке из массива shirts
+            const selectedShirt = shirts[selectedShirtIndex];
 
-    // Объект с изображениями майки для разных цветов
-    const shirtImages = {
-        'red': selectedShirt.colors.red || selectedShirt.default,
-        'blue': selectedShirt.colors.blue || selectedShirt.default,
-        'green': selectedShirt.colors.green || selectedShirt.default,
-        'white': selectedShirt.colors.white || selectedShirt.default,
-        'yellow': selectedShirt.colors.yellow || selectedShirt.default,
-        'pink': selectedShirt.colors.pink || selectedShirt.default
-    };
+            // Объект с изображениями майки для разных цветов
+            const shirtImages = {
+                'red': selectedShirt.colors.red || selectedShirt.default,
+                'blue': selectedShirt.colors.blue || selectedShirt.default,
+                'green': selectedShirt.colors.green || selectedShirt.default,
+                'white': selectedShirt.colors.white || selectedShirt.default,
+                'yellow': selectedShirt.colors.yellow || selectedShirt.default,
+                'pink': selectedShirt.colors.pink || selectedShirt.default
+            };
 
-    // Генерируем контент для страницы с деталями майки
-    const shirtDetailsContent = document.createElement('div');
+            // Генерируем контент для страницы с деталями майки
+            const shirtDetailsContent = document.createElement('div');
 
-    const imageUrl = shirtImages.white.front; // По умолчанию показываем красный цвет спереди
-    const shirtImage = document.createElement('img');
-    shirtImage.src = imageUrl;
-    shirtImage.alt = `${selectedShirt.name} Front`;
+            const imageUrl = shirtImages.white.front; // По умолчанию показываем красный цвет спереди
+            const shirtImage = document.createElement('img');
+            shirtImage.src = imageUrl;
+            shirtImage.alt = `${selectedShirt.name} Front`;
 
-    const shirtInfo = document.createElement('div');
-    shirtInfo.classList.add('shirt-info');
+            const shirtInfo = document.createElement('div');
+            shirtInfo.classList.add('shirt-info');
 
-    const shirtName = document.createElement('h2');
-    shirtName.textContent = selectedShirt.name;
+            const shirtName = document.createElement('h2');
+            shirtName.textContent = selectedShirt.name;
 
-    const colorButtonsContainer = document.createElement('div');
-    colorButtonsContainer.classList.add('color-buttons-container');
+            const colorButtonsContainer = document.createElement('div');
+            colorButtonsContainer.classList.add('color-buttons-container');
 
-    // Создаем кнопку для дефолтного цвета майки
-    createColorButton('white', 'White', true); // Первый цвет - дефолтный
+            // Создаем кнопки только для доступных цветов майки
+            const availableColors = Object.keys(shirtImages).filter(color => shirtImages[color].front && shirtImages[color].back);
 
-    // Создаем кнопки только для цветов, для которых есть изображения
-    if (shirtImages.red && shirtImages.red.front && shirtImages.red.back) {
-        createColorButton('red', 'Red', false);
-    }
-    if (shirtImages.blue && shirtImages.blue.front && shirtImages.blue.back) {
-        createColorButton('blue', 'Blue', false);
-    }
-    if (shirtImages.green && shirtImages.green.front && shirtImages.green.back) {
-        createColorButton('green', 'Green', false);
-    }
-    if (shirtImages.yellow && shirtImages.yellow.front && shirtImages.yellow.back) {
-        createColorButton('yellow', 'Yellow', false);
-    }
-    if (shirtImages.pink && shirtImages.pink.front && shirtImages.pink.back) {
-        createColorButton('pink', 'Pink', false);
-    }
+            availableColors.forEach(color => {
+                const colorButton = document.createElement('div');
+                colorButton.style.backgroundColor = color;
+                colorButton.classList.add('color-button');
+                colorButton.addEventListener('click', () => {
+                    // Изменяем цвет майки при клике на кнопку цвета
+                    changeShirtColor(color);
+                });
+                colorButtonsContainer.appendChild(colorButton);
+            });
 
-    // Создаем кнопки для переключения на перед и зад
-    const frontButton = createButton('Front', 'front-button');
-    frontButton.addEventListener('click', () => {
-        // Переключаем майку на перед
-        changeShirtSide('front');
-    });
-    colorButtonsContainer.appendChild(frontButton);
+            // Создаем кнопки для переключения на перед и зад
+            const frontButton = createButton('Front', 'front-button');
+            frontButton.addEventListener('click', () => {
+                // Переключаем майку на перед
+                changeShirtSide('front');
+            });
+            colorButtonsContainer.appendChild(frontButton);
 
-    const backButton = createButton('Back', 'back-button');
-    backButton.addEventListener('click', () => {
-        // Переключаем майку на зад
-        changeShirtSide('back');
-    });
-    colorButtonsContainer.appendChild(backButton);
+            const backButton = createButton('Back', 'back-button');
+            backButton.addEventListener('click', () => {
+                // Переключаем майку на зад
+                changeShirtSide('back');
+            });
+            colorButtonsContainer.appendChild(backButton);
 
-    shirtInfo.appendChild(shirtName);
-    shirtInfo.appendChild(colorButtonsContainer);
+            shirtInfo.appendChild(shirtName);
+            shirtInfo.appendChild(colorButtonsContainer);
 
-    shirtDetailsContent.appendChild(shirtImage);
-    shirtDetailsContent.appendChild(shirtInfo);
+            shirtDetailsContent.appendChild(shirtImage);
+            shirtDetailsContent.appendChild(shirtInfo);
 
-    shirtDetailsContainer.appendChild(shirtDetailsContent);
+            shirtDetailsContainer.appendChild(shirtDetailsContent);
 
-    function createButton(text, className) {
-        const button = document.createElement('button');
-        button.classList.add('button');
-        button.classList.add(className);
-        button.textContent = text;
-        return button;
-    }
+            function createButton(text, className) {
+                const button = document.createElement('button');
+                button.classList.add('button');
+                button.classList.add(className);
+                button.textContent = text;
+                return button;
+            }
 
-    function createColorButton(color, text, isDefault) {
-        const colorButton = document.createElement('div');
-        colorButton.style.backgroundColor = color;
-        colorButton.classList.add('color-button');
-        colorButton.addEventListener('click', () => {
-            // Изменяем цвет майки при клике на кнопку цвета
-            changeShirtColor(color);
+            function changeShirtColor(color) {
+                // Изменяем изображение майки на соответствующее цвету
+                const imageUrl = shirtImages[color].front;
+                shirtImage.src = imageUrl;
+            }
+
+            function changeShirtSide(side) {
+                // Изменяем изображение майки на перед или зад
+                const imageUrl = side === 'front' ? shirtImages.white.front : shirtImages.white.back;
+                shirtImage.src = imageUrl;
+            }
         });
-        colorButtonsContainer.appendChild(colorButton);
-
-        if (isDefault) {
-            // Если это дефолтный цвет, устанавливаем его как активный
-            colorButton.classList.add('active');
-            changeShirtColor(color);
-        }
-    }
-
-    function changeShirtColor(color) {
-        // Изменяем изображение майки на соответствующее цвету
-        const imageUrl = shirtImages[color].front;
-        shirtImage.src = imageUrl;
-
-        // Помечаем выбранную кнопку цвета как активную
-        const colorButtons = document.querySelectorAll('.color-button');
-        colorButtons.forEach(button => button.classList.remove('active'));
-        const activeButton = Array.from(colorButtons).find(button => button.style.backgroundColor === color);
-        if (activeButton) {
-            activeButton.classList.add('active');
-        }
-    }
-
-    function changeShirtSide(side) {
-        // Изменяем изображение майки на перед или зад
-        const imageUrl = side === 'front' ? shirtImages.white.front : shirtImages.white.back;
-        shirtImage.src = imageUrl;
-    }
-});
-</script>
+    </script>
 
 </body>
 
