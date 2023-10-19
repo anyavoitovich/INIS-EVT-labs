@@ -93,12 +93,15 @@
                 'red': selectedShirt.colors.red || selectedShirt.default,
                 'blue': selectedShirt.colors.blue || selectedShirt.default,
                 'green': selectedShirt.colors.green || selectedShirt.default
+                'white': selectedShirt.colors.white || selectedShirt.default,
+                'yellow': selectedShirt.colors.yellow || selectedShirt.default,
+                'pink': selectedShirt.colors.pink || selectedShirt.default
             };
 
             // Генерируем контент для страницы с деталями майки
             const shirtDetailsContent = document.createElement('div');
 
-            const imageUrl = shirtImages.red.front; // По умолчанию показываем красный цвет спереди
+            const imageUrl = shirtImages.white.front; // По умолчанию показываем красный цвет спереди
             const shirtImage = document.createElement('img');
             shirtImage.src = imageUrl;
             shirtImage.alt = `${selectedShirt.name} Front`;
@@ -112,9 +115,10 @@
             const colorButtonsContainer = document.createElement('div');
             colorButtonsContainer.classList.add('color-buttons-container');
 
-            // Создаем кнопки для цветов майки
-            const colors = ['red', 'blue', 'green'];
-            colors.forEach(color => {
+            // Создаем кнопки только для доступных цветов майки
+            const availableColors = Object.keys(shirtImages).filter(color => shirtImages[color].front && shirtImages[color].back);
+
+            availableColors.forEach(color => {
                 const colorButton = document.createElement('div');
                 colorButton.style.backgroundColor = color;
                 colorButton.classList.add('color-button');
@@ -164,7 +168,7 @@
 
             function changeShirtSide(side) {
                 // Изменяем изображение майки на перед или зад
-                const imageUrl = side === 'front' ? shirtImages.red.front : shirtImages.red.back;
+                const imageUrl = side === 'front' ? shirtImages.white.front : shirtImages.white.back;
                 shirtImage.src = imageUrl;
             }
         });
