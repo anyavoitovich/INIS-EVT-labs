@@ -125,9 +125,9 @@
             const shirtInfo = document.createElement('div');
             shirtInfo.classList.add('shirt-info');
            
-            const price = document.createElement('p');
+            const shirtPrice = document.createElement('p');
             shirtPrice.textContent = selectedShirt.price;
-            price.textContent = `Цена: ${shirt.price}`;
+            shirtPrice.alt = `Цена: ${selectedShirt.price}`;
 
             
             const shirtDescription = document.createElement('p');
