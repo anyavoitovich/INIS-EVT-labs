@@ -32,8 +32,7 @@ function drawHeart(event) {
 
     const heartPath = `
         M ${startX} ${startY + height / 4}
-        A ${width / 4} ${height / 4} 0 0 1 ${startX + width / 2} ${startY}
-        A ${width / 4} ${height / 4} 0 0 1 ${startX + width} ${startY + height / 4}
+        Q ${startX + width / 2} ${startY - height / 2} ${startX + width} ${startY + height / 4}
         Q ${startX + width / 2} ${startY + height} ${startX} ${startY + height / 4}
         Z
     `;
@@ -62,21 +61,18 @@ function drawStar(event) {
     if (!isDrawing) return;
 
     const size = Math.min(event.clientX - startX, event.clientY - startY);
-    const angle = Math.PI / 5;
-    const starPath = `M ${startX} ${startY - size / 2}`;
+    const angleOff = -Math.PI / 2;
+    const angleStep = Math.PI / 5;
+    let starPath = `M ${startX + Math.cos(angleOff) * size / 2} ${startY + Math.sin(angleOff) * size / 2}`;
 
-    for (let i = 0; i < 5; i++) {
-        starPath += `
-            L ${startX + Math.cos(angle + 2 * i * Math.PI / 5) * size / 2} 
-              ${startY + Math.sin(angle + 2 * i * Math.PI / 5) * size / 2}
-        `;
-        starPath += `
-            L ${startX + Math.cos(angle + (2 * i + 1) * Math.PI / 5) * size / 4} 
-              ${startY + Math.sin(angle + (2 * i + 1) * Math.PI / 5) * size / 4}
-        `;
+    for (let i = 1; i <= 5; i++) {
+        const angle = angleOff + i * 2 * angleStep;
+        const x = startX + Math.cos(angle) * size * (i % 2 === 0 ? 1 : 0.5);
+        const y = startY + Math.sin(angle) * size * (i % 2 === 0 ? 1 : 0.5);
+        starPath += ` L ${x} ${y}`;
     }
 
-    starPath += 'Z';
+    starPath += ' Z';
 
     svg.innerHTML = `<path d="${starPath}" stroke="black" fill="transparent"/>`;
 }
