@@ -1,104 +1,100 @@
-const canvas = document.querySelector('canvas');
-const ctx = canvas.getContext('2d');
+const canvas = document.querySelector('canvas'); // Получаем элемент canvas из HTML-документа
+const ctx = canvas.getContext('2d'); // Получаем контекст рисования на canvas
 
-function drawCircle(event) {
-    if (!isDrawing) return;
+const shapes = []; // Массив для хранения фигур
 
-    const radius = Math.sqrt((event.clientX - startX) ** 2 + (event.clientY - startY) ** 2);
-    ctx.beginPath();
-    ctx.arc(startX, startY, radius, 0, 2 * Math.PI);
-    ctx.strokeStyle = 'black';
-    ctx.stroke();
+// Функция для отрисовки всех фигур в массиве shapes
+function drawShapes() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Очищаем canvas
+    shapes.forEach(shape => {
+        ctx.strokeStyle = 'black'; // Устанавливаем цвет контура фигуры
+        ctx.beginPath(); // Начинаем новый путь рисования
+        shape.draw(ctx); // Вызываем метод draw фигуры, передаем контекст рисования
+        ctx.stroke(); // Рисуем контур фигуры
+    });
 }
 
-function drawRectangle(event) {
-    if (!isDrawing) return;
-
-    const width = event.clientX - startX;
-    const height = event.clientY - startY;
-    ctx.beginPath();
-    ctx.rect(startX, startY, width, height);
-    ctx.strokeStyle = 'black';
-    ctx.stroke();
+// Функция для рисования круга
+function drawCircle(startX, startY, endX, endY) {
+    const radius = Math.sqrt((endX - startX) ** 2 + (endY - startY) ** 2); // Рассчитываем радиус по координатам мыши
+    ctx.arc(startX, startY, radius, 0, 2 * Math.PI); // Рисуем круг
 }
 
-function drawHeart(event) {
-    if (!isDrawing) return;
-
-    const width = event.clientX - startX;
-    const height = event.clientY - startY;
-    const heartPath = new Path2D();
-    heartPath.moveTo(startX, startY + height / 4);
-    heartPath.quadraticCurveTo(startX + width / 2, startY - height / 2, startX + width, startY + height / 4);
-    heartPath.quadraticCurveTo(startX + width / 2, startY + height, startX, startY + height / 4);
-    ctx.strokeStyle = 'black';
-    ctx.stroke(heartPath);
+// Функция для рисования прямоугольника
+function drawRectangle(startX, startY, endX, endY) {
+    const width = endX - startX; // Рассчитываем ширину по координатам мыши
+    const height = endY - startY; // Рассчитываем высоту по координатам мыши
+    ctx.rect(startX, startY, width, height); // Рисуем прямоугольник
 }
 
-function drawTriangle(event) {
-    if (!isDrawing) return;
 
-    const width = event.clientX - startX;
-    const height = event.clientY - startY;
-    ctx.beginPath();
-    ctx.moveTo(startX, startY);
-    ctx.lineTo(startX + width, startY);
-    ctx.lineTo(startX + width / 2, startY + height);
-    ctx.closePath();
-    ctx.strokeStyle = 'black';
-    ctx.stroke();
+// Функция для рисования треугольника
+function drawTriangle(startX, startY, endX, endY) {
+    const width = endX - startX; // Рассчитываем ширину по координатам мыши
+    const height = endY - startY; // Рассчитываем высоту по координатам мыши
+    ctx.moveTo(startX, startY); // Перемещаемся в начальную точку
+    ctx.lineTo(startX + width, startY); // Рисуем первую сторону треугольника
+    ctx.lineTo(startX + width / 2, startY + height); // Рисуем вторую сторону треугольника
+    ctx.closePath(); // Заканчиваем путь, соединяя последнюю точку с первой
 }
 
-function drawStar(event) {
-    if (!isDrawing) return;
 
-    const size = Math.min(event.clientX - startX, event.clientY - startY);
-    const angleOff = -Math.PI / 2;
-    const angleStep = Math.PI / 5;
-
-    ctx.beginPath();
-    ctx.moveTo(startX + Math.cos(angleOff) * size / 2, startY + Math.sin(angleOff) * size / 2);
-
-    for (let i = 1; i <= 5; i++) {
-        const angle = angleOff + i * 2 * angleStep;
-        const x = startX + Math.cos(angle) * size * (i % 2 === 0 ? 1 : 0.5);
-        const y = startY + Math.sin(angle) * size * (i % 2 === 0 ? 1 : 0.5);
-        ctx.lineTo(x, y);
-    }
-
-    ctx.closePath();
-    ctx.strokeStyle = 'black';
-    ctx.stroke();
-}
-
+// Функция для начала рисования фигуры
 function startDrawing(event) {
-    isDrawing = true;
-    startX = event.clientX;
-    startY = event.clientY;
-    shape = document.querySelector('input[name="shape"]:checked').value;
+    const startX = event.clientX - canvas.offsetLeft; // Получаем начальную координату x относительно canvas
+    const startY = event.clientY - canvas.offsetTop; // Получаем начальную координату y относительно canvas
+    const shapeType = document.querySelector('input[name="shape"]:checked').value; // Получаем выбранный тип фигуры
+    const newShape = {
+        type: shapeType, // Тип фигуры (круг, прямоугольник, сердце, треугольник, звезда)
+        startX, // Начальная координата x
+        startY, // Начальная координата y
+        endX: startX, // Конечная координата x (изначально равна начальной)
+        endY: startY  // Конечная координата y (изначально равна начальной)
+    };
+    shapes.push(newShape); // Добавляем новую фигуру в массив
+    drawShapes(); // Перерисовываем все фигуры на canvas
 }
 
-function stopDrawing() {
-    isDrawing = false;
+// Функция для обновления рисования фигуры при движении мыши
+function updateDrawing(event) {
+    if (shapes.length === 0) return; // Если массив фигур пуст, выходим из функции
+    const endX = event.clientX - canvas.offsetLeft; // Получаем конечную координату x относительно canvas
+    const endY = event.clientY - canvas.offsetTop; // Получаем конечную координату y относительно canvas
+    shapes[shapes.length - 1].endX = endX; // Обновляем конечную координату x последней добавленной фигуры
+    shapes[shapes.length - 1].endY = endY; // Обновляем конечную координату y последней добавленной фигуры
+    drawShapes(); // Перерисовываем все фигуры на canvas
 }
 
-let isDrawing = false;
-let startX, startY;
-let shape;
-
-canvas.addEventListener('mousedown', startDrawing);
-canvas.addEventListener('mousemove', (event) => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    if (shape === 'circle') {
-        drawCircle(event);
-    } else if (shape === 'rectangle') {
-        drawRectangle(event);
-    } else if (shape === 'heart') {
-        drawHeart(event);
-    } else if (shape === 'triangle') {
-        drawTriangle(event);
-    } else if (shape === 'star') {
-        drawStar(event);
+// Функция для удаления фигуры при клике на нее
+function removeShape(event) {
+    const clickX = event.clientX - canvas.offsetLeft; // Получаем координату x клика относительно canvas
+    const clickY = event.clientY - canvas.offsetTop; // Получаем координату y клика относительно canvas
+    for (let i = shapes.length - 1; i >= 0; i--) {
+        const shape = shapes[i]; // Получаем текущую фигуру из массива
+        const hit = checkHit(shape, clickX, clickY); // Проверяем, попал ли клик в текущую фигуру
+        if (hit) { // Если клик попал в фигуру
+            shapes.splice(i, 1); // Удаляем фигуру из массива
+            drawShapes(); // Перерисовываем все фигуры на canvas
+            break; // Выходим из цикла, так как фигура уже удалена
+        }
     }
-});
-canvas.addEventListener('mouseup', stopDrawing);
+}
+
+// Функция для проверки, попал ли клик в фигуру
+function checkHit(shape, x, y) {
+    ctx.beginPath(); // Начинаем новый путь рисования
+    if (shape.type === 'circle') {
+        drawCircle(shape.startX, shape.startY, shape.endX, shape.endY); // Рисуем круг
+    } else if (shape.type === 'rectangle') {
+        drawRectangle(shape.startX, shape.startY, shape.endX, shape.endY); // Рисуем прямоугольник
+    } else if (shape.type === 'triangle') {
+        drawTriangle(shape.startX, shape.startY, shape.endX, shape.endY); // Рисуем треугольник
+    } 
+    ctx.closePath(); // Заканчиваем путь
+    return ctx.isPointInPath(x, y); // Проверяем, попал ли клик в путь фигуры
+}
+
+// Добавляем слушатели событий для рисования, обновления и удаления фигур
+canvas.addEventListener('mousedown', startDrawing); // При нажатии кнопки мыши начинаем рисовать фигуру
+canvas.addEventListener('mousemove', updateDrawing); // При движении мыши обновляем рисование текущей фигуры
+canvas.addEventListener('click', removeShape); // При клике на фигуру удаляем ее
