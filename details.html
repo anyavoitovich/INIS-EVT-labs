@@ -143,8 +143,15 @@
                 // Переключаем майку на зад
                 changeShirtSide('back');
             });
+            
             colorButtonsContainer.appendChild(backButton);
-
+            // Создаем кнопку для возвращения к каталогу
+            const catalogButton = createButton('К каталогу');
+            catalogButton.addEventListener('click', () => {
+                window.location.href = 'piis3.html';
+            });
+            colorButtonsContainer.appendChild(catalogButton);
+            
             shirtInfo.appendChild(shirtName);
             shirtInfo.appendChild(colorButtonsContainer);
 
