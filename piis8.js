@@ -1,6 +1,7 @@
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
-const shapes = []; // Массив для хранения фигур
+let shapes = []; // Массив для хранения фигур
+let currentShape = null;
 
 function drawCircle(startX, startY, endX, endY) {
     const radius = Math.sqrt((endX - startX) ** 2 + (endY - startY) ** 2);
@@ -19,41 +20,62 @@ function drawRectangle(startX, startY, endX, endY) {
     ctx.stroke();
 }
 
+function drawTriangle(startX, startY, endX, endY) {
+    ctx.beginPath();
+    ctx.moveTo(startX, startY);
+    ctx.lineTo(endX, startY);
+    ctx.lineTo(startX + (endX - startX) / 2, endY);
+    ctx.closePath();
+    ctx.strokeStyle = 'black';
+    ctx.stroke();
+}
+
 function startDrawing(event) {
     const startX = event.clientX;
     const startY = event.clientY;
+    shape = document.querySelector('input[name="shape"]:checked').value;
+    currentShape = { startX, startY, endX: startX, endY: startY, shape };
+}
 
-    if (!isDrawing) {
-        isDrawing = true;
-        shape = document.querySelector('input[name="shape"]:checked').value;
-        shapes.push({ startX, startY, shape, endX: startX, endY: startY }); // Начинаем новую фигуру
+function drawCurrentShape() {
+    const { startX, startY, endX, endY, shape: type } = currentShape;
+    if (type === 'circle') {
+        drawCircle(startX, startY, endX, endY);
+    } else if (type === 'rectangle') {
+        drawRectangle(startX, startY, endX, endY);
+    } else if (type === 'triangle') {
+        drawTriangle(startX, startY, endX, endY);
     }
 }
 
-function drawShapes() {
+function continueDrawing(event) {
+    if (!currentShape) return;
+    const { startX, startY } = currentShape;
+    currentShape.endX = event.clientX;
+    currentShape.endY = event.clientY;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawShapes();
+    drawCurrentShape();
+}
+
+function stopDrawing() {
+    shapes.push(currentShape);
+    currentShape = null;
+}
+
+function drawShapes() {
     shapes.forEach(shape => {
         const { startX, startY, endX, endY, shape: type } = shape;
         if (type === 'circle') {
             drawCircle(startX, startY, endX, endY);
         } else if (type === 'rectangle') {
             drawRectangle(startX, startY, endX, endY);
+        } else if (type === 'triangle') {
+            drawTriangle(startX, startY, endX, endY);
         }
     });
 }
 
-function stopDrawing(event) {
-    if (isDrawing) {
-        shapes[shapes.length - 1].endX = event.clientX;
-        shapes[shapes.length - 1].endY = event.clientY;
-        isDrawing = false;
-        drawShapes();
-    }
-}
-
-let isDrawing = false;
-let shape;
-
 canvas.addEventListener('mousedown', startDrawing);
-canvas.addEventListener('mousemove', drawShapes);
+canvas.addEventListener('mousemove', continueDrawing);
 canvas.addEventListener('mouseup', stopDrawing);
