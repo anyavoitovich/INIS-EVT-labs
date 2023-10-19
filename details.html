@@ -115,6 +115,9 @@
             const shirtDetailsContent = document.createElement('div');
 
             const imageUrl = shirtImages.white.front; // По умолчанию показываем белый цвет спереди
+            const shirtName = document.createElement('h2');
+            shirtName.textContent = selectedShirt.name;
+
             const shirtImage = document.createElement('img');
             shirtImage.src = imageUrl;
             shirtImage.alt = `${selectedShirt.name} Front`;
@@ -122,10 +125,10 @@
             const shirtInfo = document.createElement('div');
             shirtInfo.classList.add('shirt-info');
 
-            const shirtName = document.createElement('h2');
-            shirtName.textContent = selectedShirt.name;
+            
             const shirtDescription = document.createElement('p');
             shirtDescription.textContent = selectedShirt.description;
+            shirtDescription.alt = `${selectedShirt.description}`
 
 
             const colorButtonsContainer = document.createElement('div');
