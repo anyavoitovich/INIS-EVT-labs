@@ -122,19 +122,19 @@
             const colorButtonsContainer = document.createElement('div');
             colorButtonsContainer.classList.add('buttons-container');
 
-            // Создаем кнопки только для доступных цветов майки
-            const availableColors = Object.keys(shirtImages).filter(color => shirtImages[color]);
+            // Создаем кнопки только для доступных цветов майки (у которых есть и front, и back изображения)
+            const availableColors = Object.keys(shirtImages).filter(color => shirtImages[color].front && shirtImages[color].back);
 
             availableColors.forEach(color => {
-              const colorButton = document.createElement('div');
-              colorButton.style.backgroundColor = color;
-              colorButton.classList.add('color-button');
-              colorButton.addEventListener('click', () => {
-                // Изменяем цвет майки при клике на кнопку цвета
-                changeShirtColor(color);
+                const colorButton = document.createElement('div');
+                colorButton.style.backgroundColor = color;
+                colorButton.classList.add('color-button');
+                colorButton.addEventListener('click', () => {
+                    // Изменяем цвет майки при клике на кнопку цвета
+                    changeShirtColor(color);
+                });
+                colorButtonsContainer.appendChild(colorButton);
             });
-            colorButtonsContainer.appendChild(colorButton);
-        });
 
 
             // Создаем кнопки для переключения на перед и зад
