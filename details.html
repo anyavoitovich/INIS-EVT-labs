@@ -35,12 +35,12 @@
 
         .shirt-info {
             text-align: align="middle";
-            vertical-align: top;
+            
         }
 
         .shirt-details h2 {
             color: #144362;
-            vertical-align: top;
+            
         }
 
         .button {
@@ -124,6 +124,9 @@
 
             const shirtName = document.createElement('h2');
             shirtName.textContent = selectedShirt.name;
+            const shirtDescription = document.createElement('p');
+            shirtDescription.textContent = selectedShirt.description;
+
 
             const colorButtonsContainer = document.createElement('div');
             colorButtonsContainer.classList.add('color-buttons-container');
@@ -165,6 +168,7 @@
             colorButtonsContainer.appendChild(catalogButton);
             
             shirtInfo.appendChild(shirtName);
+            shirtInfo.appendChild(shirtDescription);
             shirtInfo.appendChild(colorButtonsContainer);
 
             shirtDetailsContent.appendChild(shirtImage);
