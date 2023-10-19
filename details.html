@@ -111,7 +111,7 @@
             const shirtDetailsContent = document.createElement('div');
             shirtDetailsContent.classList.add('shirt-info');
 
-            const imageUrl = shirtImages.red.front; // По умолчанию показываем красный цвет спереди
+            const imageUrl = shirtImages.white.front; // По умолчанию показываем красный белый спереди
             const shirtImage = document.createElement('img');
             shirtImage.src = imageUrl;
             shirtImage.alt = `${selectedShirt.name} Front`;
@@ -122,20 +122,20 @@
             const colorButtonsContainer = document.createElement('div');
             colorButtonsContainer.classList.add('buttons-container');
 
-            // Создаем кнопки для цветов майки
-            const colors = ['red', 'blue', 'green', 'white', 'yellow', 'pink'];
-            colors.forEach(color => {
-                if (shirtImages[color]) {
-                    const colorButton = document.createElement('div');
-                    colorButton.style.backgroundColor = color;
-                    colorButton.classList.add('color-button');
-                    colorButton.addEventListener('click', () => {
-                        // Изменяем цвет майки при клике на кнопку цвета
-                        changeShirtColor(color);
-                    });
-                    colorButtonsContainer.appendChild(colorButton);
-                }
+            // Создаем кнопки только для доступных цветов майки
+            const availableColors = Object.keys(shirtImages).filter(color => shirtImages[color]);
+
+            availableColors.forEach(color => {
+              const colorButton = document.createElement('div');
+              colorButton.style.backgroundColor = color;
+              colorButton.classList.add('color-button');
+              colorButton.addEventListener('click', () => {
+                // Изменяем цвет майки при клике на кнопку цвета
+                changeShirtColor(color);
             });
+            colorButtonsContainer.appendChild(colorButton);
+        });
+
 
             // Создаем кнопки для переключения на перед и зад
             const frontButton = createButton('Front', 'front-button');
@@ -155,7 +155,7 @@
             // Создаем кнопку для возвращения к каталогу
             const catalogButton = createButton('К каталогу');
             catalogButton.addEventListener('click', () => {
-                window.location.href = 'index.html';
+                window.location.href = 'piis3.html';
             });
             colorButtonsContainer.appendChild(catalogButton);
 
