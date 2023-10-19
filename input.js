@@ -1,107 +1,74 @@
-const targets = document.querySelectorAll(".target");
-let activeTarget = null;
-let isDragging = false;
-let isDoubleClick = false;
+// Получаем все элементы с классом "target"
+const targets = document.querySelectorAll('.target');
 
-// Добавляем обработчики событий мыши для всех div с классом "target"
-targets.forEach((target) => {
-  target.addEventListener("mousedown", handleMouseDown);
-  target.addEventListener("dblclick", handleDoubleClick);
-  target.addEventListener("touchstart", handleTouchStart);
-  target.addEventListener("touchend", handleTouchEnd);
+// Переменные для хранения состояния перетаскивания
+let isDragging = false;
+let offsetX, offsetY, draggedElement, originalX, originalY;
+
+// Функция для начала перетаскивания элемента
+function startDragging(event) {
+  isDragging = true;
+  draggedElement = event.target;
+  offsetX = event.clientX - draggedElement.getBoundingClientRect().left;
+  offsetY = event.clientY - draggedElement.getBoundingClientRect().top;
+  originalX = draggedElement.style.left;
+  originalY = draggedElement.style.top;
+  draggedElement.style.backgroundColor = 'blue';
+}
+
+// Функция для перемещения элемента
+function dragElement(event) {
+  if (isDragging) {
+    const x = event.clientX - offsetX;
+    const y = event.clientY - offsetY;
+    draggedElement.style.left = `${x}px`;
+    draggedElement.style.top = `${y}px`;
+  }
+}
+
+// Функция для завершения перетаскивания элемента
+function stopDragging() {
+  if (isDragging) {
+    isDragging = false;
+    draggedElement.style.backgroundColor = 'red';
+  }
+}
+
+// Функция для обработки двойного клика
+function handleDoubleClick(event) {
+  event.preventDefault();
+  isDragging = true;
+  draggedElement = event.target;
+  offsetX = event.clientX - draggedElement.getBoundingClientRect().left;
+  offsetY = event.clientY - draggedElement.getBoundingClientRect().top;
+  originalX = draggedElement.style.left;
+  originalY = draggedElement.style.top;
+
+  // Добавляем обработчик для открепления элемента от курсора по клику мыши
+  document.addEventListener('click', function handleClick(event) {
+    event.preventDefault();
+    isDragging = false;
+    draggedElement.style.backgroundColor = 'red';
+
+    // Удаляем обработчик события клика после выполнения одного действия
+    document.removeEventListener('click', handleClick);
+  }, { once: true });
+}
+
+// Обработчики событий для каждого элемента с классом "target"
+targets.forEach(target => {
+  target.addEventListener('mousedown', startDragging);
+  target.addEventListener('mousemove', dragElement);
+  target.addEventListener('mouseup', stopDragging);
+  target.addEventListener('dblclick', handleDoubleClick);
 });
 
-document.addEventListener("mousemove", handleMouseMove);
-document.addEventListener("mouseup", handleMouseUp);
-document.addEventListener("keydown", handleKeyDown);
-
-function handleMouseDown(event) {
-  if (isDoubleClick) return;
-
-  activeTarget = event.target;
-  isDragging = true;
-  event.preventDefault();
-
-  // При зажатой левой кнопке мыши перемещаем div следом за курсором
-  document.addEventListener("mousemove", handleMouseMove);
-  document.addEventListener("mouseup", handleMouseUp);
-}
-
-function handleMouseMove(event) {
-  if (isDragging && activeTarget) {
-    const rect = activeTarget.getBoundingClientRect();
-    const offsetX = event.clientX - rect.width / 2;
-    const offsetY = event.clientY - rect.height / 2;
-    activeTarget.style.left = offsetX + "px";
-    activeTarget.style.top = offsetY + "px";
-  }
-}
-
-function handleMouseUp() {
-  isDragging = false;
-  document.removeEventListener("mousemove", handleMouseMove);
-  document.removeEventListener("mouseup", handleMouseUp);
-}
-
-function handleDoubleClick(event) {
-  if (activeTarget === event.target) {
-    isDoubleClick = true;
-    activeTarget.style.backgroundColor = "green";
-    activeTarget.style.cursor = "move";
-
-    document.addEventListener("mousemove", handleMouseMoveOnDoubleClick);
-    document.addEventListener("mouseup", handleMouseUpOnDoubleClick);
-  }
-}
-
-function handleMouseMoveOnDoubleClick(event) {
-  if (isDoubleClick && activeTarget) {
-    const rect = activeTarget.getBoundingClientRect();
-    const offsetX = event.clientX - rect.width / 2;
-    const offsetY = event.clientY - rect.height / 2;
-    activeTarget.style.left = offsetX + "px";
-    activeTarget.style.top = offsetY + "px";
-  }
-}
-
-function handleMouseUpOnDoubleClick() {
-  isDoubleClick = false;
-  activeTarget.style.backgroundColor = "red";
-  activeTarget.style.cursor = "auto";
-
-  document.removeEventListener("mousemove", handleMouseMoveOnDoubleClick);
-  document.removeEventListener("mouseup", handleMouseUpOnDoubleClick);
-}
-
-function handleTouchStart(event) {
-  if (isDragging) return;
-
-  activeTarget = event.target;
-  isDragging = true;
-  event.preventDefault();
-
-  document.addEventListener("touchmove", handleMouseMove);
-  document.addEventListener("touchend", handleTouchEnd);
-}
-
-function handleTouchEnd() {
-  isDragging = false;
-  activeTarget = null;
-  document.removeEventListener("touchmove", handleMouseMove);
-  document.removeEventListener("touchend", handleTouchEnd);
-}
-
-function handleKeyDown(event) {
-  if (event.key === "Escape" && (isDragging || isDoubleClick)) {
-    // В случае нажатия клавиши "Esc" возвращаем элемент на исходную позицию и отменяем приклеивание
+// Обработчик события нажатия клавиши "esc"
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape' && isDragging) {
     isDragging = false;
-    isDoubleClick = false;
-
-    if (activeTarget) {
-      activeTarget.style.left = "";
-      activeTarget.style.top = "";
-      activeTarget.style.backgroundColor = "red";
-      activeTarget.style.cursor = "auto";
-    }
+    draggedElement.style.left = originalX;
+    draggedElement.style.top = originalY;
+    draggedElement.style.backgroundColor = 'red';
   }
-}
+});
