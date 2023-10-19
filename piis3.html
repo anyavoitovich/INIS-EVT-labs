@@ -131,7 +131,11 @@
             const shirtName = document.createElement('h2');
             shirtName.textContent = shirt.name;
             shirtElement.appendChild(shirtName);
-    
+            
+            const shirtDescription = document.createElement('p');
+            shirtDescription.textContent = shirt.description;
+            shirtElement.appendChild(shirtDescription);
+
             const colorCount = Object.keys(shirt.colors || {}).length;
             const description = document.createElement('p');
             description.classList.add('description');
