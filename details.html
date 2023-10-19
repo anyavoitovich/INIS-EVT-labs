@@ -126,8 +126,9 @@
             shirtInfo.classList.add('shirt-info');
            
             const price = document.createElement('p');
+            shirtPrice.textContent = selectedShirt.price;
             price.textContent = `Цена: ${shirt.price}`;
-            quickViewImages.appendChild(price);
+
             
             const shirtDescription = document.createElement('p');
             shirtDescription.textContent = selectedShirt.description;
