@@ -1,7 +1,6 @@
 const svg = document.querySelector('svg');
 
 function startDrawing(event) {
-    console.log("Mouse Down Event");
     if (event.target.tagName === 'svg' && event.buttons === 1) {
         isDrawing = true;
         startX = event.clientX;
@@ -11,7 +10,6 @@ function startDrawing(event) {
 }
 
 function draw(event) {
-    console.log("Mouse Move Event");
     if (!isDrawing) return;
 
     const width = event.clientX - startX;
@@ -26,7 +24,6 @@ function draw(event) {
 }
 
 function stopDrawing() {
-    console.log("Mouse Up Event");
     isDrawing = false;
 }
 
