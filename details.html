@@ -17,9 +17,8 @@
             background-color: #ecf0f1;
             display: flex;
             align-items: center;
-            justify-content: center;
             height: 100vh;
-            flex-direction: column;
+            flex-direction: row;
         }
 
         .shirt-details {
@@ -29,18 +28,19 @@
             text-align: center;
             padding: 20px;
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             align-items: center;
+            margin: 20px;
         }
 
         .shirt-details img {
-            max-width: 300px;
+            max-width: 100%;
             border-radius: 10px;
         }
 
         .shirt-info {
             text-align: left;
-            margin-left: 20px;
+            margin-top: 20px;
         }
 
         .shirt-details h2 {
@@ -49,6 +49,8 @@
         }
 
         .button {
+            background-color: #144362;
+            color: #fff;
             border: none;
             border-radius: 5px;
             padding: 10px 20px;
@@ -58,12 +60,8 @@
             margin-right: 10px;
         }
 
-        .front-button {
-            background-color: #FF5733;
-        }
-
-        .back-button {
-            background-color: #3498db;
+        .button:hover {
+            background-color: #0f344d;
         }
 
         .color-button {
@@ -73,22 +71,6 @@
             cursor: pointer;
             margin-right: 10px;
             border: 2px solid #fff;
-        }
-
-        .white-button {
-            background-color: #fff;
-        }
-
-        .yellow-button {
-            background-color: yellow;
-        }
-
-        .pink-button {
-            background-color: pink;
-        }
-
-        .back-button {
-            background-color: #3498db;
         }
 
         .buttons-container {
@@ -199,9 +181,9 @@
             function changeShirtSide(side) {
                 // Изменяем изображение майки в зависимости от выбранной стороны
                 if (side === 'front') {
-                    imageUrl = shirtImages.red.front; // Показываем красный цвет спереди
+                    imageUrl = shirtImages.front; // Показываем красный цвет спереди
                 } else {
-                    imageUrl = shirtImages.red.back; // Показываем красный цвет сзади
+                    imageUrl = shirtImages.back; // Показываем красный цвет сзади
                 }
                 shirtImage.src = imageUrl;
             }
