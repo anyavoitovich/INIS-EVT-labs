@@ -111,7 +111,7 @@
             const shirtDetailsContent = document.createElement('div');
             shirtDetailsContent.classList.add('shirt-info');
 
-            const imageUrl = shirtImages.white.front; // По умолчанию показываем красный белый спереди
+            const imageUrl = shirtImages.white.front; // По умолчанию показываем красный цвет спереди
             const shirtImage = document.createElement('img');
             shirtImage.src = imageUrl;
             shirtImage.alt = `${selectedShirt.name} Front`;
@@ -122,7 +122,7 @@
             const colorButtonsContainer = document.createElement('div');
             colorButtonsContainer.classList.add('buttons-container');
 
-            // Создаем кнопки только для доступных цветов майки (у которых есть и front, и back изображения)
+            // Создаем кнопки только для доступных цветов майки
             const availableColors = Object.keys(shirtImages).filter(color => shirtImages[color].front && shirtImages[color].back);
 
             availableColors.forEach(color => {
@@ -135,7 +135,6 @@
                 });
                 colorButtonsContainer.appendChild(colorButton);
             });
-
 
             // Создаем кнопки для переключения на перед и зад
             const frontButton = createButton('Front', 'front-button');
@@ -181,9 +180,9 @@
             function changeShirtSide(side) {
                 // Изменяем изображение майки в зависимости от выбранной стороны
                 if (side === 'front') {
-                    imageUrl = shirtImages.front; // Показываем красный цвет спереди
+                    imageUrl = shirtImages.white.front; // Показываем красный цвет спереди
                 } else {
-                    imageUrl = shirtImages.back; // Показываем красный цвет сзади
+                    imageUrl = shirtImages.white.back; // Показываем красный цвет сзади
                 }
                 shirtImage.src = imageUrl;
             }
