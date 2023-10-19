@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Графический редактор</title>
     <style>
-        svg {
+        canvas {
             border: 1px solid black;
         }
     </style>
@@ -16,11 +16,14 @@
         <input type="radio" id="circle" name="shape" value="circle" checked>
         <label for="rectangle">Квадрат</label>
         <input type="radio" id="rectangle" name="shape" value="rectangle">
+        <label for="heart">Сердце</label>
+        <input type="radio" id="heart" name="shape" value="heart">
         <label for="triangle">Треугольник</label>
         <input type="radio" id="triangle" name="shape" value="triangle">
+        <label for="star">Звезда</label>
+        <input type="radio" id="star" name="shape" value="star">
     </div>
-    </div>
-    <svg width="800" height="600"></svg>
-    <script src="piis7.js"></script>
+    <canvas width="800" height="600"></canvas>
+    <script src="script.js"></script>
 </body>
 </html>
