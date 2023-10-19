@@ -22,9 +22,12 @@ function drawRectangle(startX, startY, endX, endY) {
 function startDrawing(event) {
     const startX = event.clientX;
     const startY = event.clientY;
-    isDrawing = true;
-    shape = document.querySelector('input[name="shape"]:checked').value;
-    shapes.push({ startX, startY, shape });
+
+    if (!isDrawing) {
+        isDrawing = true;
+        shape = document.querySelector('input[name="shape"]:checked').value;
+        shapes.push({ startX, startY, shape, endX: startX, endY: startY }); // Начинаем новую фигуру
+    }
 }
 
 function drawShapes() {
@@ -41,10 +44,8 @@ function drawShapes() {
 
 function stopDrawing(event) {
     if (isDrawing) {
-        const endX = event.clientX;
-        const endY = event.clientY;
-        shapes[shapes.length - 1].endX = endX;
-        shapes[shapes.length - 1].endY = endY;
+        shapes[shapes.length - 1].endX = event.clientX;
+        shapes[shapes.length - 1].endY = event.clientY;
         isDrawing = false;
         drawShapes();
     }
