@@ -228,7 +228,7 @@
 
             function changeShirtSide(side) {
                 // Изменяем изображение майки на перед или зад
-                const imageUrl = side === 'front' ? shirtImages.white.front : shirtImages.white.back;
+                const imageUrl = side === 'front' ? shirtImages[color].front : shirtImages[color].back;
                 shirtImage.src = imageUrl;
             }
         });
