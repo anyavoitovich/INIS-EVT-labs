@@ -114,6 +114,17 @@
             background-color: #0f344d;
             font-family: 'Space Mono', monospace;
         }
+        .home-button {
+            cursor: pointer;
+            margin-top: 20px;
+            background-color: #144362;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            transition: background-color 0.3s;
+            font-family: 'Space Mono', monospace;
+        }
     </style>
 </head>
 
@@ -130,6 +141,7 @@
         const shirtsContainer = document.getElementById('shirts-container');
         const quickViewOverlay = document.getElementById('quickViewOverlay');
         const quickViewContent = document.getElementById('quickViewContent');
+        
     
         shirts.forEach((shirt, index) => {
             const shirtElement = document.createElement('div');
@@ -211,9 +223,10 @@
         function hideQuickView() {
             quickViewOverlay.style.display = 'none';
         }
+        
     </script>
     
 
 </body>
-<p><a href="index.html">главная страница</a></p>
+<p><a href="index.html" name = "home-button">главная страница</a></p>
 </html>
