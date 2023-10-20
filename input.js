@@ -25,7 +25,7 @@ function handleMouseDown(event) {
 function handleDoubleClick(event) {
   selectedElement = event.target;
   selectedElement.style.zIndex = "999";
-  selectedElement.style.backgroundColor = "blue";
+  selectedElement.style.backgroundColor = "pink";
 
   function handleMouseMove(event) {
     selectedElement.style.left = event.clientX - initialX + "px";
