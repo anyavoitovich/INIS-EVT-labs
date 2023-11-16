@@ -1,12 +1,14 @@
 const targets = document.querySelectorAll(".target");
 let selectedElement = null;
-let initialX, initialY;
+let initialX, initialY, x, y;
 
 function handleMouseDown(event) {
   selectedElement = event.target;
   selectedElement.style.zIndex = "999";
   initialX = event.clientX - selectedElement.getBoundingClientRect().left;
   initialY = event.clientY - selectedElement.getBoundingClientRect().top;
+  x = event.target.style.left;
+  y = event.target.style.top;
 
   function handleMouseMove(event) {
     selectedElement.style.left = event.clientX - initialX + "px";
@@ -45,8 +47,8 @@ function handleKeyDown(event) {
   if (event.key === "Escape" && selectedElement) {
     selectedElement.style.zIndex = "auto";
     selectedElement.style.backgroundColor = "red";
-    selectedElement.style.left = initialX + "px";
-    selectedElement.style.top = initialY + "px";
+    selectedElement.style.left = x + "px";
+    selectedElement.style.top = y + "px";
     selectedElement = null;
   }
 }
