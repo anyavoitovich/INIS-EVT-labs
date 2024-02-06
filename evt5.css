@@ -41,6 +41,7 @@ h2 {
 h1 {
     text-align: center; /* 5. Выравнивание заголовков по центру */
     font-family: 'Futurespore';
+    size: 100px;
 }
 p {
     text-align: justify; /* 5. Выравнивание текста по ширине */
