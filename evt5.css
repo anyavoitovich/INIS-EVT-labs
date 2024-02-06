@@ -1,0 +1,42 @@
+body {
+    background-color: #f0f0f0; /* 1. Цвет фона */
+    margin: 0;
+    font-family: Arial, sans-serif; /* Шрифт для всего текста */
+}
+
+.container {
+    max-width: 1440px; /* 2. Ширина контейнера */
+    margin: 0 auto; /* Центрирование контейнера */
+    background-color: #f0f0f0; /* 1. Цвет фона */
+    padding: 20px;
+}
+
+.content {
+    font-family: 'YourFontName', Arial, sans-serif; /* 3. Подключение кастомного шрифта */
+}
+
+ul {
+    list-style-type: none; /* 4. Убираем маркеры списка */
+}
+
+a {
+    text-decoration: none; /* 4. Убираем подчеркивание у ссылок */
+    color: black; /* 4. Цвет ссылок */
+}
+
+h2 {
+    text-align: center; /* 5. Выравнивание заголовков по центру */
+}
+
+p {
+    text-align: justify; /* 5. Выравнивание текста по ширине */
+}
+
+img {
+    border-radius: 10px; /* 7. Закругленные края для изображений */
+    width: 100%; /* 6. Размер изображений */
+}
+
+strong {
+    font-weight: bold; /* 8. Жирное начертание через CSS свойство */
+}
