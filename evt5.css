@@ -83,7 +83,7 @@ h1 {
     margin-top: 50px;
 }
 p {
-    text-align-last: justify; /* Выравнивание текста по ширине */
+    /* text-align: justify; Выравнивание текста по ширине */
     font-size: 30px;
 }
 
