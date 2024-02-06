@@ -1,11 +1,11 @@
 const ball = document.querySelector('.ball');
 
-const initialVelocity = 100; // Начальная скорость мяча (в пикселях в секунду)
+const initialVelocity = 1000; // Начальная скорость мяча (в пикселях в секунду)
 const g = 9.81; // Ускорение свободного падения (м/с^2)
 const restitutionCoefficient = 0.7; // Коэффициент упругости
 
 let velocity = initialVelocity; // Начальная скорость мяча
-let position = (0, 0); // Начальное положение мяча (верхний край экрана)
+let position = window.innerHeight; // Начальное положение мяча (верхний край экрана)
 
 function fall() {
   // Вычисляем новую позицию мяча с учетом времени
