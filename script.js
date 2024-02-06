@@ -3,13 +3,13 @@ const ball = document.querySelector('.ball');
 const g = 9.81; // Ускорение свободного падения (м/с^2)
 const initialVelocity = Math.sqrt(2 * g * maxHeight); // Начальная скорость для достижения максимальной высоты
 
-let velocity = initialVelocity; // Начальная скорость мяча
-let position = 0; // Начальное положение мяча
+let velocity = 0; // Начальная скорость мяча
+let position = maxHeight; // Начальное положение мяча (верхний край экрана)
 
 function fall() {
   // Вычисляем новую скорость и позицию мяча с учетом времени
   velocity += g * 0.01; // 0.01 секунды - интервал анимации
-  position += velocity * 0.01; // 0.01 секунды - интервал анимации
+  position -= velocity * 0.01; // 0.01 секунды - интервал анимации
   
   // Применяем изменения к мячу
   ball.style.bottom = position + 'px';
