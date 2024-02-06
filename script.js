@@ -20,7 +20,6 @@ function fall() {
   if (position <= 0) {
     // Учитываем вес мяча и коэффициент упругости при отскоке
     velocity *= -restitutionCoefficient / weight; 
-    velocity -= g * 0.01; // Ускорение при отскоке
 
     // Увеличиваем счетчик отскоков
     bounces++;
