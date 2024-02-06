@@ -1,36 +1,30 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const ball = document.querySelector('.ball');
-    const windowHeight = window.innerHeight;
-    const gravity = 9.8; // Ускорение свободного падения (м/с^2)
-    const restitution = 0.7; // Коэффициент упругости
+const ball = document.querySelector('.ball');
 
-    let initialVelocity = Math.sqrt(2 * gravity * windowHeight); // Начальная скорость для достижения высоты windowHeight
+const g = 9.81; // Ускорение свободного падения (м/с^2)
+const maxHeight = window.innerHeight - 100; // Высота падения мяча
 
-    function fall() {
-        let timeToFall = Math.sqrt((2 * windowHeight) / gravity); // Время падения с высоты windowHeight
-        let maxVelocity = gravity * timeToFall; // Максимальная скорость при достижении поверхности
+let velocity = 0; // Начальная скорость мяча
+let position = 0; // Начальное положение мяча
 
-        // Вычисляем новую высоту мячика в зависимости от времени
-        let newHeight = (0.5 * gravity * timeToFall * timeToFall) - (0.5 * gravity * Math.pow((timeToFall - performance.now() / 1000), 2));
-        
-        // Обновляем положение мячика
-        ball.style.bottom = `${newHeight}px`;
+function fall() {
+  // Вычисляем новую скорость и позицию мяча с учетом времени
+  velocity += g * 0.01; // 0.01 секунды - интервал анимации
+  position += velocity * 0.01; // 0.01 секунды - интервал анимации
+  
+  // Применяем изменения к мячу
+  ball.style.bottom = position + 'px';
 
-        // Если мячик достиг поверхности, происходит отскок
-        if (newHeight <= 0) {
-            initialVelocity *= restitution; // Уменьшаем скорость после отскока
-            timeToFall = Math.sqrt((2 * newHeight) / gravity); // Время до следующего отскока
-            maxVelocity = gravity * timeToFall; // Максимальная скорость при следующем отскоке
-            newHeight = (0.5 * gravity * timeToFall * timeToFall) - (0.5 * gravity * Math.pow((timeToFall - performance.now() / 1000), 2));
-            ball.style.bottom = `${newHeight}px`;
-        }
+  // Проверяем, достиг ли мяч дна
+  if (position <= 0) {
+    // Рассчитываем отскок
+    velocity *= -0.7; // Коэффициент упругости
 
-        // Повторяем анимацию, пока мячик не остановится
-        if (initialVelocity >= 0.01) {
-            requestAnimationFrame(fall);
-        }
+    // Проверяем, не слишком ли мало отскочил мяч, чтобы продолжать анимацию
+    if (Math.abs(velocity) < 1) {
+      clearInterval(fallInterval);
     }
+  }
+}
 
-    // Запускаем анимацию падения
-    fall();
-});
+// Запускаем анимацию падения мяча
+const fallInterval = setInterval(fall, 10);

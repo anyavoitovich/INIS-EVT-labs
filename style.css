@@ -45,7 +45,7 @@ a.link:hover::after {
   border-radius: 50%;
   position: absolute;
   bottom: 0;
-  animation: fall 2s ease-out infinite;
+  animation: none;
 }
 
 @keyframes fall {
