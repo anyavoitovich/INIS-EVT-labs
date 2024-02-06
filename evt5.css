@@ -48,7 +48,7 @@ body {
     padding: 50px;
     margin-bottom: 50px;
     font-family: '2';
-    text-align: left; /* Выравнивание по ширине */
+    text-align: left; /* Выравнивание по левому */
 }
 
 .minicontent3 {
@@ -57,7 +57,7 @@ body {
     padding: 50px;
     margin-bottom: 50px;
     font-family: '3';
-    text-align: right; /* Выравнивание по левому краю */
+    text-align: right; /* Выравнивание по правому краю */
 }
 ul {
     list-style-type: none; /* 4. Убираем маркеры списка */
