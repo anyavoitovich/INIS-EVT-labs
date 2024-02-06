@@ -14,7 +14,10 @@ body {
 .content {
     font-family: 'YourFontName', Arial, sans-serif; /* 3. Подключение кастомного шрифта */
 }
-
+.minicontent {
+    background-color: #ffffff;
+    border-radius: 10px;
+}
 ul {
     list-style-type: none; /* 4. Убираем маркеры списка */
 }
