@@ -10,7 +10,7 @@ body {
 }
 @font-face {
     font-family: '1'; /* Имя вашего шрифта */
-    src: url('17643.otf') format('truetype'); /* Путь к вашему .ttf файлу */
+    src: url('18094.ttf') format('truetype'); /* Путь к вашему .ttf файлу */
 
 }
 @font-face {
@@ -39,6 +39,7 @@ body {
     padding: 50px;
     margin-bottom: 50px;
     font-family: '1';
+    font-size: 8px;
 }
 .minicontent2 {
     background-color: #ffffff;
@@ -46,6 +47,7 @@ body {
     padding: 50px;
     margin-bottom: 50px;
     font-family: '2';
+    font-size: 8px;
 }
 .minicontent3 {
     background-color: #ffffff;
@@ -53,6 +55,7 @@ body {
     padding: 50px;
     margin-bottom: 50px;
     font-family: '3';
+    font-size: 8px;
 }
 ul {
     list-style-type: none; /* 4. Убираем маркеры списка */
