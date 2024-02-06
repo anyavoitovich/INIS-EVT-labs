@@ -3,7 +3,11 @@ body {
     margin: 0;
     font-family: Arial, sans-serif; /* Шрифт для всего текста */
 }
+@font-face {
+    font-family: 'Futurespore'; /* Имя вашего шрифта */
+    src: url('19846.otf') format('truetype'); /* Путь к вашему .ttf файлу */
 
+}
 .container {
     max-width: 1440px; /* 2. Ширина контейнера */
     margin: 0 auto; /* Центрирование контейнера */
@@ -22,6 +26,7 @@ body {
 }
 ul {
     list-style-type: none; /* 4. Убираем маркеры списка */
+    text-align: center;
 }
 
 a {
@@ -35,6 +40,7 @@ h2 {
 }
 h1 {
     text-align: center; /* 5. Выравнивание заголовков по центру */
+    font-family: 'Futurespore';
 }
 p {
     text-align: justify; /* 5. Выравнивание текста по ширине */
