@@ -74,6 +74,8 @@ a {
 h2 {
     text-align: center; /* 5. Выравнивание заголовков по центру */
     font-size: 70px;
+    margin: 0;
+    padding: 0;
 }
 h1 {
     text-align: center; /* 5. Выравнивание заголовков по центру */
