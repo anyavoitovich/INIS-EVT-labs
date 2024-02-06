@@ -15,6 +15,12 @@ function fall() {
   // Применяем изменения к мячу
   ball.style.bottom = position + 'px';
 
+  // Проверяем, достиг ли мяч верхней границы экрана
+  if (position >= window.innerHeight) {
+    // Останавливаем движение мяча
+    clearInterval(fallInterval);
+  }
+
   // Проверяем, достиг ли мяч дна
   if (position <= 0) {
     // Учитываем вес мяча при отскоке
