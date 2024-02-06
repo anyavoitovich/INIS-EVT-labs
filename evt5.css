@@ -49,9 +49,7 @@ body {
     font-family: '2';
     
 }
-.p{
-    font-size: 30px;
-}
+
 .minicontent3 {
     background-color: #ffffff;
     border-radius: 10px;
@@ -85,6 +83,7 @@ h1 {
 }
 p {
     text-align: justify; /* 5. Выравнивание текста по ширине */
+    font-size: 30px;
 }
 
 img {
