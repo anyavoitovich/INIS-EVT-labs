@@ -1,3 +1,21 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: rgb(52, 206, 142);
+  height: 100px;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  line-height: 100px;
+  margin: 0;
+}
+
 button {
   margin: 50px;
   font-size: 20px;
@@ -10,14 +28,13 @@ button:hover {
   background-color: green;
 }
 
-a.link {
+a {
   font-size: 20px;
-  color: black;
   text-decoration: none;
-  position: relative;
+  color: black;
 }
 
-a.link:hover {
+a:hover {
   color: green;
 }
 
@@ -50,21 +67,21 @@ a.link:hover::after {
 
 @keyframes vibrate {
   from {
-    transform: translateX(-5px);
+      transform: translateX(-5px);
   }
   to {
-    transform: translateX(5px);
+      transform: translateX(5px);
   }
 }
 
 @keyframes fall {
   0% {
-    transform: translateY(-100vh);
+      transform: translateY(-100vh);
   }
   50% {
-    transform: translateY(0);
+      transform: translateY(0);
   }
   100% {
-    transform: translateY(-100vh);
+      transform: translateY(-100vh);
   }
 }
