@@ -10,16 +10,32 @@ button:hover {
   background-color: green;
 }
 
-a {
+a.link {
   font-size: 20px;
   color: black;
   text-decoration: none;
+  position: relative;
 }
 
-a:hover {
+a.link:hover {
   color: green;
-  text-decoration: underline;
-  transition: text-decoration 0.5s ease-in-out;
+}
+
+a.link::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 1px;
+  background-color: green;
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
+}
+
+a.link:hover::after {
+  width: 100%;
+  left: 0;
 }
 
 .ball {
