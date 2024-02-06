@@ -1,5 +1,5 @@
 body {
-    background-color: #f0f0f0; /* 1. Цвет фона */
+    background-color: #edb601; /* 1. Цвет фона */
     margin: 0;
     font-family: Arial, sans-serif; /* Шрифт для всего текста */
 }
@@ -34,7 +34,7 @@ p {
 
 img {
     border-radius: 10px; /* 7. Закругленные края для изображений */
-    width: 100%; /* 6. Размер изображений */
+
 }
 
 strong {
