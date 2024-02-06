@@ -1,9 +1,9 @@
 const ball = document.querySelector('.ball');
 
 const g = 9.81; // Ускорение свободного падения (м/с^2)
-const maxHeight = window.innerHeight - 100; // Высота падения мяча
+const initialVelocity = Math.sqrt(2 * g * maxHeight); // Начальная скорость для достижения максимальной высоты
 
-let velocity = 0; // Начальная скорость мяча
+let velocity = initialVelocity; // Начальная скорость мяча
 let position = 0; // Начальное положение мяча
 
 function fall() {
