@@ -8,6 +8,21 @@ body {
     src: url('19846.otf') format('truetype'); /* Путь к вашему .ttf файлу */
 
 }
+@font-face {
+    font-family: '1'; /* Имя вашего шрифта */
+    src: url('17643.otf') format('truetype'); /* Путь к вашему .ttf файлу */
+
+}
+@font-face {
+    font-family: '2'; /* Имя вашего шрифта */
+    src: url('16873.otf') format('truetype'); /* Путь к вашему .ttf файлу */
+
+}
+@font-face {
+    font-family: '3'; /* Имя вашего шрифта */
+    src: url('16874.ttf') format('truetype'); /* Путь к вашему .ttf файлу */
+
+}
 .container {
     max-width: 1440px; /* 2. Ширина контейнера */
     margin: 0 auto; /* Центрирование контейнера */
@@ -23,6 +38,21 @@ body {
     border-radius: 10px;
     padding: 50px;
     margin-bottom: 50px;
+    font-family: '1';
+}
+.minicontent2 {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 50px;
+    margin-bottom: 50px;
+    font-family: '2';
+}
+.minicontent3 {
+    background-color: #ffffff;
+    border-radius: 10px;
+    padding: 50px;
+    margin-bottom: 50px;
+    font-family: '3';
 }
 ul {
     list-style-type: none; /* 4. Убираем маркеры списка */
