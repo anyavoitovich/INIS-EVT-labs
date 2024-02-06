@@ -3,6 +3,7 @@ const ball = document.querySelector('.ball');
 const initialVelocity = 1000; // Начальная скорость мяча (в пикселях в секунду)
 const restitutionCoefficient = 0.8; // Коэффициент упругости
 const weight = 2; // Вес мяча
+const g = 9.81; // Ускорение свободного падения (м/с^2)
 
 let velocity = initialVelocity; // Начальная скорость мяча
 let position = window.innerHeight; // Начальное положение мяча (верхний край экрана)
@@ -17,7 +18,7 @@ function fall() {
 
   // Проверяем, достиг ли мяч дна
   if (position <= 0) {
-    // Учитываем вес мяча при отскоке
+    // Учитываем вес мяча и коэффициент упругости при отскоке
     velocity *= -restitutionCoefficient / weight; 
 
     // Увеличиваем счетчик отскоков
