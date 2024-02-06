@@ -1,6 +1,6 @@
 const ball = document.querySelector('.ball');
 
-const initialVelocity = 50; // Начальная скорость мяча (в пикселях в секунду)
+const initialVelocity = 100; // Начальная скорость мяча (в пикселях в секунду)
 const g = 9.81; // Ускорение свободного падения (м/с^2)
 const restitutionCoefficient = 0.7; // Коэффициент упругости
 
