@@ -58,7 +58,7 @@ a.link:hover::after {
   15% {
     transform: translateY(-250px); /* Увеличили высоту отскока */
   }
-  20% {
+  25% {
     transform: translateY(0);
   }
   30% {
