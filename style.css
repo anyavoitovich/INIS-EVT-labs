@@ -52,61 +52,31 @@ a.link:hover::after {
   0% {
     transform: translateY(-100vh);
   }
-  4% {
+  10% {
     transform: translateY(0);
   }
-  8% {
-    transform: translateY(-300px); /* Увеличили высоту первого отскока */
+  15% {
+    transform: translateY(-250px); /* Увеличили высоту отскока */
   }
-  16% {
+  25% {
     transform: translateY(0);
   }
-  24% {
-    transform: translateY(-250px); /* Дополнительный отскок */
+  30% {
+    transform: translateY(-125px); /* Увеличили высоту отскока */
   }
-  32% {
+  35% {
     transform: translateY(0);
   }
   40% {
-    transform: translateY(-200px); /* Увеличили высоту второго отскока */
+    transform: translateY(-75px); /* Увеличили высоту отскока */
   }
-  48% {
+  42% {
     transform: translateY(0);
   }
-  52% {
-    transform: translateY(-150px); /* Дополнительный отскок */
+  45% {
+    transform: translateY(-6.25px); /* Увеличили высоту отскока */
   }
-  56% {
-    transform: translateY(0);
-  }
-  60% {
-    transform: translateY(-125px); /* Дополнительный отскок */
-  }
-  64% {
-    transform: translateY(0);
-  }
-  68% {
-    transform: translateY(-100px); /* Увеличили высоту третьего отскока */
-  }
-  72% {
-    transform: translateY(0);
-  }
-  76% {
-    transform: translateY(-75px); /* Дополнительный отскок */
-  }
-  80% {
-    transform: translateY(0);
-  }
-  84% {
-    transform: translateY(-50px); /* Дополнительный отскок */
-  }
-  88% {
-    transform: translateY(0);
-  }
-  92% {
-    transform: translateY(-25px); /* Дополнительный отскок */
-  }
-  96% {
+  50% {
     transform: translateY(0);
   }
   100% {
