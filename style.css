@@ -42,59 +42,62 @@ a.link:hover::after {
   0% {
     transform: translateY(-100vh);
   }
-  5% {
+  4% {
     transform: translateY(0);
   }
-  10% {
-    transform: translateY(-250px); /* Увеличили высоту первого отскока */
+  8% {
+    transform: translateY(-300px); /* Увеличили высоту первого отскока */
   }
-  20% {
+  16% {
     transform: translateY(0);
   }
-  25% {
-    transform: translateY(-150px); /* Увеличили высоту второго отскока */
+  24% {
+    transform: translateY(-250px); /* Дополнительный отскок */
   }
-  30% {
+  32% {
     transform: translateY(0);
-  }
-  35% {
-    transform: translateY(-100px); /* Увеличили высоту третьего отскока */
   }
   40% {
+    transform: translateY(-200px); /* Увеличили высоту второго отскока */
+  }
+  48% {
     transform: translateY(0);
   }
-  45% {
-    transform: translateY(-75px); /* Увеличили высоту четвертого отскока */
+  52% {
+    transform: translateY(-150px); /* Дополнительный отскок */
   }
-  50% {
+  56% {
     transform: translateY(0);
-  }
-  55% {
-    transform: translateY(-60px); /* Дополнительный отскок после 75% */
   }
   60% {
+    transform: translateY(-125px); /* Дополнительный отскок */
+  }
+  64% {
     transform: translateY(0);
   }
-  65% {
-    transform: translateY(-50px); /* Дополнительный отскок после 75% */
+  68% {
+    transform: translateY(-100px); /* Увеличили высоту третьего отскока */
   }
-  70% {
+  72% {
     transform: translateY(0);
   }
-  75% {
-    transform: translateY(-40px); /* Дополнительный отскок после 75% */
+  76% {
+    transform: translateY(-75px); /* Дополнительный отскок */
   }
   80% {
     transform: translateY(0);
   }
-  85% {
-    transform: translateY(-30px); /* Дополнительный отскок после 75% */
+  84% {
+    transform: translateY(-50px); /* Дополнительный отскок */
   }
-  90% {
+  88% {
     transform: translateY(0);
   }
-  95% {
-    transform: translateY(-20px); /* Дополнительный отскок после 75% */
+  92% {
+    transform: translateY(-25px); /* Дополнительный отскок */
+  }
+  96% {
+    transform: translateY(0);
   }
   100% {
     transform: translateY(0);
