@@ -55,28 +55,28 @@ a.link:hover::after {
   10% {
     transform: translateY(0);
   }
-  20% {
+  15% {
     transform: translateY(-250px); /* Увеличили высоту отскока */
   }
+  20% {
+    transform: translateY(0);
+  }
   30% {
+    transform: translateY(-125px); /* Увеличили высоту отскока */
+  }
+  35% {
     transform: translateY(0);
   }
   40% {
-    transform: translateY(-125px); /* Увеличили высоту отскока */
-  }
-  50% {
-    transform: translateY(0);
-  }
-  60% {
     transform: translateY(-75px); /* Увеличили высоту отскока */
   }
-  70% {
+  42% {
     transform: translateY(0);
   }
-  80% {
+  45% {
     transform: translateY(-6.25px); /* Увеличили высоту отскока */
   }
-  90% {
+  50% {
     transform: translateY(0);
   }
   100% {
