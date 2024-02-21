@@ -45,7 +45,7 @@ a.link:hover::after {
   border-radius: 50%;
   position: absolute;
   bottom: 0;
-  animation: fall 4s ease-in-out infinite;
+  animation: fall 6s ease-in-out infinite; /* Увеличили длительность анимации до 6 секунд */
 }
 
 @keyframes fall {
@@ -56,25 +56,25 @@ a.link:hover::after {
     transform: translateY(0);
   }
   20% {
-    transform: translateY(-30px);
+    transform: translateY(-50px); /* Увеличили высоту отскока */
   }
   30% {
     transform: translateY(0);
   }
   40% {
-    transform: translateY(-15px);
+    transform: translateY(-25px); /* Увеличили высоту отскока */
   }
   50% {
     transform: translateY(0);
   }
   60% {
-    transform: translateY(-7.5px);
+    transform: translateY(-12.5px); /* Увеличили высоту отскока */
   }
   70% {
     transform: translateY(0);
   }
   80% {
-    transform: translateY(-3.75px);
+    transform: translateY(-6.25px); /* Увеличили высоту отскока */
   }
   90% {
     transform: translateY(0);
@@ -83,6 +83,7 @@ a.link:hover::after {
     transform: translateY(0);
   }
 }
+
 
 
 @keyframes vibrate {
