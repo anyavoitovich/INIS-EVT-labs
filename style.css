@@ -38,46 +38,63 @@ a.link:hover::after {
   left: 0;
 }
 
-.ball {
-  width: 50px;
-  height: 50px;
-  background-color: blue;
-  border-radius: 50%;
-  position: absolute;
-  bottom: 0;
-  animation: fall 5s ease-in-out infinite; /* Увеличили длительность анимации до 6 секунд */
-}
-
 @keyframes fall {
   0% {
     transform: translateY(-100vh);
   }
-  10% {
+  5% {
     transform: translateY(0);
   }
-  15% {
-    transform: translateY(-250px); /* Увеличили высоту отскока */
+  10% {
+    transform: translateY(-250px); /* Увеличили высоту первого отскока */
+  }
+  20% {
+    transform: translateY(0);
   }
   25% {
-    transform: translateY(0);
+    transform: translateY(-150px); /* Увеличили высоту второго отскока */
   }
   30% {
-    transform: translateY(-125px); /* Увеличили высоту отскока */
-  }
-  35% {
     transform: translateY(0);
   }
-  40% {
-    transform: translateY(-75px); /* Увеличили высоту отскока */
+  35% {
+    transform: translateY(-100px); /* Увеличили высоту третьего отскока */
   }
-  42% {
+  40% {
     transform: translateY(0);
   }
   45% {
-    transform: translateY(-6.25px); /* Увеличили высоту отскока */
+    transform: translateY(-75px); /* Увеличили высоту четвертого отскока */
   }
   50% {
     transform: translateY(0);
+  }
+  55% {
+    transform: translateY(-60px); /* Дополнительный отскок после 75% */
+  }
+  60% {
+    transform: translateY(0);
+  }
+  65% {
+    transform: translateY(-50px); /* Дополнительный отскок после 75% */
+  }
+  70% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(-40px); /* Дополнительный отскок после 75% */
+  }
+  80% {
+    transform: translateY(0);
+  }
+  85% {
+    transform: translateY(-30px); /* Дополнительный отскок после 75% */
+  }
+  90% {
+    transform: translateY(0);
+  }
+  95% {
+    transform: translateY(-20px); /* Дополнительный отскок после 75% */
   }
   100% {
     transform: translateY(0);
