@@ -2,9 +2,9 @@ html {
   font-family: sans-serif;
 }
 
-body {
+/* body {
   margin: 0;
-}
+} */
 
 header {
   background: rgb(52, 206, 142);
@@ -22,35 +22,17 @@ article {
   padding: 10px;
   margin: 10px;
   background: rgba(16, 233, 215, 0.178);
+  flex: 1 0 30%; /* Устанавливаем ширину блоков */
+
 }
-.flex-container {
+body {
   display: flex;
   flex-wrap: wrap;
 }
 
-.column {
-  flex: 1;
-}
 
-.column:nth-child(1) {
-  order: 1;
-}
 
-.column:nth-child(2) {
-  order: 2;
-}
-
-.column:nth-child(3) {
-  order: 3;
-}
-
-article {
-  margin-bottom: 20px;
-  flex-basis: calc(33.33% - 20px);
-  box-sizing: border-box;
-}
-
-/* Установка порядка для каждой статьи */
+/* Устанавливаем порядок следования блоков */
 article:nth-child(1),
 article:nth-child(7),
 article:nth-child(9) {
