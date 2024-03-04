@@ -33,22 +33,25 @@ article {
 
 }
 
-/* Управление порядком статей в каждой колонке */
-.article-container:nth-child(1) article:nth-child(1),
-.article-container:nth-child(1) article:nth-child(7),
-.article-container:nth-child(1) article:nth-child(9) {
-  order: 1; /* Поместить статьи в первую колонку */
+/* Управление порядком статей */
+article:nth-child(1),
+article:nth-child(7),
+article:nth-child(9) {
+  -webkit-order: 1; /* Поместить статьи в первую колонку */
+  order: 1;
 }
 
-.article-container:nth-child(2) article:nth-child(2),
-.article-container:nth-child(2) article:nth-child(8),
-.article-container:nth-child(2) article:nth-child(10) {
-  order: 2; /* Поместить статьи во вторую колонку */
+article:nth-child(2),
+article:nth-child(8),
+article:nth-child(10) {
+  -webkit-order: 2; /* Поместить статьи во вторую колонку */
+  order: 2;
 }
 
-.article-container:nth-child(3) article:nth-child(3),
-.article-container:nth-child(3) article:nth-child(6),
-.article-container:nth-child(3) article:nth-child(5),
-.article-container:nth-child(3) article:nth-child(4) {
-  order: 3; /* Поместить статьи в третью колонку */
+article:nth-child(3),
+article:nth-child(6),
+article:nth-child(5),
+article:nth-child(4) {
+  -webkit-order: 3; /* Поместить статьи в третью колонку */
+  order: 3;
 }
