@@ -17,7 +17,11 @@ h1 {
   line-height: 100px;
   margin: 0;
 }
+article-container {
+  display: flex;
+  flex-wrap: wrap;
 
+}
 article {
   padding: 10px;
   margin: 10px;
@@ -25,16 +29,6 @@ article {
   flex: 1 0 30%; /* Устанавливаем ширину блоков */
 
 }
-
-
-
-article-container {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
 
 
 /* Управление порядком статей */
