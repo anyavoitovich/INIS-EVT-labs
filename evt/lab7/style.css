@@ -32,7 +32,7 @@ article {
   background: rgba(16, 233, 215, 0.178);
 }
 
-/* article:nth-child(1),
+article:nth-child(1),
 article:nth-child(7),
 article:nth-child(9) {
   order: 1;
@@ -49,4 +49,4 @@ article:nth-child(6),
 article:nth-child(5),
 article:nth-child(4) {
   order: 3;
-} */
+}
