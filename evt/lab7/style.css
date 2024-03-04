@@ -33,44 +33,22 @@ article {
 
 }
 
-
-/* Управление порядком статей */
-article:nth-child(1) {
-  order: 1; /* Поместить первую статью в первую колонку */
+/* Управление порядком статей в каждой колонке */
+.article-container:nth-child(1) article:nth-child(1),
+.article-container:nth-child(1) article:nth-child(7),
+.article-container:nth-child(1) article:nth-child(9) {
+  order: 1; /* Поместить статьи в первую колонку */
 }
 
-article:nth-child(7) {
-  order: 2; /* Поместить седьмую статью в первую колонку */
+.article-container:nth-child(2) article:nth-child(2),
+.article-container:nth-child(2) article:nth-child(8),
+.article-container:nth-child(2) article:nth-child(10) {
+  order: 2; /* Поместить статьи во вторую колонку */
 }
 
-article:nth-child(9) {
-  order: 3; /* Поместить девятую статью в первую колонку */
-}
-
-article:nth-child(2) {
-  order: 4; /* Поместить вторую статью во вторую колонку */
-}
-
-article:nth-child(8) {
-  order: 5; /* Поместить восьмую статью во вторую колонку */
-}
-
-article:nth-child(10) {
-  order: 6; /* Поместить десятую статью во вторую колонку */
-}
-
-article:nth-child(3) {
-  order: 7; /* Поместить третью статью в третью колонку */
-}
-
-article:nth-child(6) {
-  order: 8; /* Поместить шестую статью в третью колонку */
-}
-
-article:nth-child(5) {
-  order: 9; /* Поместить пятую статью в третью колонку */
-}
-
-article:nth-child(4) {
-  order: 10; /* Поместить четвертую статью в третью колонку */
+.article-container:nth-child(3) article:nth-child(3),
+.article-container:nth-child(3) article:nth-child(6),
+.article-container:nth-child(3) article:nth-child(5),
+.article-container:nth-child(3) article:nth-child(4) {
+  order: 3; /* Поместить статьи в третью колонку */
 }
