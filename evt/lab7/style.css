@@ -25,29 +25,38 @@ article {
 }
 .flex-container {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .column {
-  flex: 1; /* Равномерное распределение пространства внутри flex-контейнера */
-  display: flex;
-  flex-direction: column;
+  flex: 1;
 }
 
-.column:nth-child(1) article:nth-child(1),
-.column:nth-child(1) article:nth-child(7),
-.column:nth-child(1) article:nth-child(9) {
-  order: 1; /* Первая колонка, порядковый номер 1 */
+article {
+  width: 100%;
+  margin-bottom: 10px;
 }
 
-.column:nth-child(2) article:nth-child(2),
-.column:nth-child(2) article:nth-child(8),
-.column:nth-child(2) article:nth-child(10) {
-  order: 2; /* Вторая колонка, порядковый номер 2 */
+article h2 {
+  margin-bottom: 5px;
 }
 
-.column:nth-child(3) article:nth-child(3),
-.column:nth-child(3) article:nth-child(6),
-.column:nth-child(3) article:nth-child(5),
-.column:nth-child(3) article:nth-child(4) {
-  order: 3; /* Третья колонка, порядковый номер 3 */
+/* Установка порядка для статей */
+article:nth-child(1),
+article:nth-child(7),
+article:nth-child(9) {
+  order: -3;
+}
+
+article:nth-child(2),
+article:nth-child(8),
+article:nth-child(10) {
+  order: -2;
+}
+
+article:nth-child(3),
+article:nth-child(6),
+article:nth-child(5),
+article:nth-child(4) {
+  order: -1;
 }
