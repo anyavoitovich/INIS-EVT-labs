@@ -17,14 +17,12 @@ h1 {
   line-height: 100px;
   margin: 0;
 }
-article-container {
+div {
   display: flex;
   flex-wrap: wrap;
 
 }
-.column {
-  flex: 1; /* Равномерно распределяем место между колонками */
-}
+
 article {
   padding: 10px;
   margin: 10px;
