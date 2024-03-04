@@ -35,14 +35,14 @@ article {
 article:nth-child(1),
 article:nth-child(7),
 article:nth-child(9) {
-  -webkit-order: 1; /* Поместить статьи в первую колонку */
+
   order: 1;
 }
 
 article:nth-child(2),
 article:nth-child(8),
 article:nth-child(10) {
-  -webkit-order: 2; /* Поместить статьи во вторую колонку */
+
   order: 2;
 }
 
@@ -50,6 +50,6 @@ article:nth-child(3),
 article:nth-child(6),
 article:nth-child(5),
 article:nth-child(4) {
-  -webkit-order: 3; /* Поместить статьи в третью колонку */
+
   order: 3;
 }
