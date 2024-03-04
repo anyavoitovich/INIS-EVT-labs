@@ -20,6 +20,7 @@ h1 {
 div {
   display: flex;
   flex-wrap: wrap;
+  flex-direction: row; /* Change the flex direction to row */
 
 }
 
