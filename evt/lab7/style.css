@@ -38,3 +38,7 @@ div{
   flex-direction: column;
   order: 1 4 3 2;
 }
+
+.fromseventoeight{
+  display: flex;
+}
