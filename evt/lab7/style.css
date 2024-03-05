@@ -32,7 +32,7 @@ article {
 
 .forthtosix{
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
 
 }
 .fourtoten{
@@ -48,4 +48,8 @@ article {
 }
 .ninetoten{
   display: flex;
+}
+
+.big{
+  padding-bottom: 150px;
 }
