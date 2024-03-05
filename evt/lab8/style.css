@@ -30,10 +30,8 @@ html {
     grid-template-columns: repeat(4, 1fr);
   }
   .grid > article:nth-child(1){
-    grid-row-start: 1; 
-    grid-row-end: 1; 
-    grid-column-start: 1;   
-    grid-column-end: 2; 
+    grid-column: 1; 
+    grid-row: 1 / 4;
   }
   .grid:nth-child(3){
     grid-row-start: 3; 
