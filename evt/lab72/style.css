@@ -26,19 +26,16 @@ article {
 }
 
 
-.firsttothree{
+.firsttosix{
   display: flex;
 }
 
-.forthtosix{
+.thirdtosix{
   display: flex;
   flex-direction: column;
+  order: 1 4 3 2;
+}
 
-}
-.fourtoten{
-  display: flex;
-  flex-direction: row-reverse;
-}
-.seventoten{
+.fromseventoeight{
   display: flex;
 }
