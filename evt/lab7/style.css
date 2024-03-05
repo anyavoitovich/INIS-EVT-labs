@@ -23,3 +23,7 @@ article {
   margin: 10px;
   background: rgba(16, 233, 215, 0.178);
 }
+div{
+  display: flex;
+  
+}
