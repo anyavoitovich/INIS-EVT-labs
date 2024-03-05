@@ -41,4 +41,11 @@ article {
 }
 .seventoten{
   display: flex;
+  flex-direction: column;
+}
+.setentoeight{
+  display: flex;
+}
+.ninetoten{
+  display: flex;
 }
