@@ -22,8 +22,19 @@ article {
   padding: 10px;
   margin: 10px;
   background: rgba(16, 233, 215, 0.178);
+  display: flex;
 }
 div{
   display: flex;
-  
+
+}
+
+.firsttosix{
+  display: flex;
+}
+
+.thirdtosix{
+  display: flex;
+  flex-direction: column;
+  order: 1 4 3 2;
 }
