@@ -29,3 +29,15 @@ html {
     grid-template-rows: repeat(4, 1fr);
     grid-template-columns: repeat(4, 1fr);
   }
+  article:nth-child(1){
+    grid-row-start: 1; 
+    grid-row-end: 2; 
+    grid-column-start: 1;   
+    grid-column-end: 2; 
+  }
+  article:nth-child(3){
+    grid-row-start: 3; 
+    grid-row-end: 4; 
+    grid-column-start: 1;   
+    grid-column-end: 2; 
+  }
