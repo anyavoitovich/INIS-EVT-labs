@@ -20,7 +20,7 @@ h1 {
 div {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: column-reverse /* Change the flex direction to row */
+  flex-direction: column /* Change the flex direction to row */
 
 }
 
@@ -28,12 +28,12 @@ article {
   padding: 10px;
   margin: 10px;
   background: rgba(16, 233, 215, 0.178);
-  flex: 1 0 30%; /* Устанавливаем ширину блоков */
+  /* flex: 1 0 30%; Устанавливаем ширину блоков */
 
 }
 
 /* Управление порядком статей */
-article:nth-child(1),
+/* article:nth-child(1),
 article:nth-child(7),
 article:nth-child(9) {
 
@@ -53,4 +53,4 @@ article:nth-child(5),
 article:nth-child(4) {
 
   order: 3;
-}
+} */
