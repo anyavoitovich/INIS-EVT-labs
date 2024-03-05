@@ -17,20 +17,18 @@ h1 {
   line-height: 100px;
   margin: 0;
 }
-.flex-container {
+div {
   height: 300px;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
 }
-.column{
-  flex: 1;
-}
+
 article {
   padding: 10px;
   margin: 10px;
   background: rgba(16, 233, 215, 0.178);
-  /* flex: 1 0 30%; Устанавливаем ширину блоков */
+  flex: 1 0 33%; 
 
 }
 
