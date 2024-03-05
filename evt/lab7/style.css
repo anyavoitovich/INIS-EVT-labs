@@ -17,7 +17,7 @@ h1 {
   line-height: 100px;
   margin: 0;
 }
-div {
+/* div {
   height: 300px;
   display: flex;
   flex-direction: column;
@@ -30,7 +30,7 @@ article {
   background: rgba(16, 233, 215, 0.178);
   flex: 1 0 33%; 
 
-}
+} */
 
 /* Управление порядком статей */
 /* article:nth-child(1),
