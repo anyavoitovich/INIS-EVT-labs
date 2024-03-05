@@ -30,7 +30,7 @@ a.link::after {
   position: absolute;
   bottom: -2px;
   left: 50%;
-  transition: width 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out, left 0.3s ease-in-out;
 }
 
 a.link:hover::after {
